@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from "react-redux"
 import './App.css';
 import Header from "../components/Header.js";
 import Main from "../components/Main.js";
 
-const App = () => {
-    return (
-      <div className="App bg-black-80">
-      	<Header />
-      	<Main />
-      </div>
-    );
+const mapStateToProps = state => {
+	return {
+		activeSection: state.activeSection
+	}
 }
 
-export default App;
+class App extends Component {
+	render() {
+		const { activeSection } = this.props;
+	    return (
+	      <div className="App bg-black-80">
+	      	<Header />
+	      	<Main activeSection={activeSection}/>
+	      </div>
+	    );
+	}
+}
+
+export default connect(mapStateToProps)(App);
 
 /* STRUCTURE:
 
