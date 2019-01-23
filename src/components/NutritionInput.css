@@ -1,0 +1,19 @@
+.nutrition-form {
+	display: flex;
+	justify-content: space-between;
+}
+
+.nutrient-container-sm {
+	width: 25%;
+	margin: 0em 2em;
+}
+
+.nutrient-container-md {
+	width: 40%;
+	margin: 0em 2em;
+}
+
+.nutrient-container-l {
+	width: 100%;
+	margin: 0em 2em;
+}

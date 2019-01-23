@@ -14,7 +14,7 @@ class App extends Component {
 	render() {
 		const { activeSection } = this.props;
 	    return (
-	      <div className="App bg-black-80">
+	      <div className="App bg-black-90">
 	      	<Header />
 	      	<Main activeSection={activeSection}/>
 	      </div>

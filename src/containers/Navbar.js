@@ -4,7 +4,6 @@ import { setActiveSection } from "../actions"
 
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => {
-	console.log(dispatch);
 	return {
 		setSection: (e) => dispatch(setActiveSection(e.target.value))
 	}

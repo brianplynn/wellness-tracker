@@ -4,9 +4,8 @@ import Sleep from "../containers/Sleep.js";
 import Nutrition from "../containers/Nutrition.js";
 
 const Main = ({ activeSection }) => {
-	console.log(activeSection);
 	return (
-		<div className="min-h-100-m light-gray">
+		<div className="min-h-100-m light-gray center">
 		{ activeSection === "nutrition" ?
 			<Nutrition /> :
 			(activeSection === "sleep" ? <Sleep /> : <Exercise />)
