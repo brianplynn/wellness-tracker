@@ -1,19 +1,61 @@
 .nutrition-form {
 	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
+	align-items: center;
+}
+
+.form-foods {
+	border-color: rgba(240,190,210,1);
+}
+
+.container-1 {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.food-input {
+	min-width: 3em;
+}
+
+.food-input-cal {
+	min-width: 4em;
+}
+
+.food-input-submit {
+	min-width: 8em;
+}
+
+#name-desc {
+	display: flex;
+	align-items: center;
+	margin-top: -5px;
+	margin-bottom: -5px;
+}
+
+.vis {
+  visibility: visible;
+}
+
+.hid {
+  visibility: hidden;
 }
 
 .nutrient-container-sm {
+	text-align: center;
 	width: 25%;
 	margin: 0em 2em;
 }
 
 .nutrient-container-md {
-	width: 40%;
+	text-align: center;
+	width: 25%;
 	margin: 0em 2em;
 }
 
 .nutrient-container-l {
+	text-align: center;
 	width: 100%;
 	margin: 0em 2em;
 }

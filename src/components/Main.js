@@ -5,12 +5,12 @@ import Nutrition from "../containers/Nutrition.js";
 
 const Main = ({ activeSection }) => {
 	return (
-		<div className="min-h-100-m light-gray center">
+		<React.Fragment>
 		{ activeSection === "nutrition" ?
 			<Nutrition /> :
 			(activeSection === "sleep" ? <Sleep /> : <Exercise />)
 		}
-		</div>
+		</React.Fragment>
 		)
 }
 

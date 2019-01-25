@@ -5,7 +5,7 @@ import { setActiveSection } from "../actions"
 const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setSection: (e) => dispatch(setActiveSection(e.target.value))
+		setSection: (e) => dispatch(setActiveSection(e.target.title))
 	}
 };
 
@@ -13,17 +13,19 @@ class Navbar extends Component {
 	render() {
 		const { setSection } = this.props;
 		return (
-			  <nav className="bt bb tc mw7 center mt4">
-			    <button className="f6 f5-l pointer outline-0 bn bg-animate bg-transparent light-gray hover-bg-gray dib pa3 ph4-l" 
-			       value="nutrition"
-			       onClick={setSection}>Nutrition</button>
-			    <button className="f6 f5-l pointer outline-0 bn bg-animate bg-transparent light-gray hover-bg-gray dib pa3 ph4-l" 
-			       value="sleep"
-			       onClick={setSection}>Sleep</button>
-			    <button className="f6 f5-l pointer outline-0 bn bg-animate bg-transparent light-gray hover-bg-gray dib pa3 ph4-l" 
-			       value="exercise"
-			       onClick={setSection}>Exercise</button>   
+			<header className="z-1 nav-bar w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
+			  <nav className="f6 fw6 ttu tracked">
+			    <span className="link dim pointer outline-0 white dib ml5 mr3" 
+			    		title="nutrition"
+			    		onClick={setSection}>Nutrition</span>
+			    <span className="link dim pointer outline-0 white dib mr3" 
+			    		title="sleep"
+			    		onClick={setSection}>Sleep</span>
+			    <span className="link dim pointer outline-0 white dib mr3"
+			    		title="exercise"
+			    		onClick={setSection}>Exercise</span>
 			  </nav>
+			</header>
 			)
 	}
 }

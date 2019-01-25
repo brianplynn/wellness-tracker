@@ -1,4 +1,4 @@
-import { DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
+import { ADD_ANOTHER_FOOD, FORM_ERROR, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
 
 export const setActiveSection = (section) => ({
 	type: SET_ACTIVE_SECTION,
@@ -44,3 +44,11 @@ export const deleteFood = (num) => ({
 	type: DELETE_FOOD,
 	payload: num
 });
+
+export const formError = () => ({
+	type: FORM_ERROR
+});
+
+export const addAnotherFood = () => ({
+	type: ADD_ANOTHER_FOOD
+})

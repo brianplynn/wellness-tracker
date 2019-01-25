@@ -8,14 +8,27 @@ import rootReducer from "./reducers"
 import './index.css';
 import App from './containers/App';
 import "tachyons";
+import Particles from 'react-particles-js';
 import * as serviceWorker from './serviceWorker';
 
 const logger = createLogger();
 const store = 
 	createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
+const particlesOptions = {
+  particles: {
+    number: {
+      value: 30,
+      density: {
+        enable: true,
+        value_area: 800
+      }
+    }
+  }
+}
 ReactDOM.render(
 				<Provider store={store}>
+					<Particles className="particles" params={particlesOptions}/>
 					<App />
 				</Provider>, document.getElementById('root'));
 

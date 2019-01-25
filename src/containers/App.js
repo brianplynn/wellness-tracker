@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import './App.css';
-import Header from "../components/Header.js";
+import Navbar from "../containers/Navbar.js";
 import Main from "../components/Main.js";
 
 const mapStateToProps = state => {
@@ -10,13 +10,16 @@ const mapStateToProps = state => {
 	}
 }
 
+
+
 class App extends Component {
 	render() {
 		const { activeSection } = this.props;
 	    return (
-	      <div className="App bg-black-90">
-	      	<Header />
+	      <div className="App">
+	      	<div className="z-2"><Navbar />
 	      	<Main activeSection={activeSection}/>
+	      	</div>
 	      </div>
 	    );
 	}
