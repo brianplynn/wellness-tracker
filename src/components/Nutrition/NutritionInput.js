@@ -60,7 +60,7 @@ const NutritionInput = ({ formErrorText, nutrientFields, onFieldChange, onSubmit
 		  </div>
 		  </div>
 		  <div className="mt3">
-		  <p className="food-input-submit b ph3 pv2 center tc light-blue w-10 ba br2 b--light-blue bg-transparent grow pointer f6"
+		  <p className="w4 b ph3 pv2 center tc light-blue ba br2 b--light-blue bg-transparent grow pointer f6"
 		  		  onClick={onSubmit.bind(null, nutrientFields, formCorrect)}>
 		  		  Submit
 		  </p>

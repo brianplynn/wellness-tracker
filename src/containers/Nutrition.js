@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import NutritionInput from "../components/NutritionInput.js"
-import NutritionTable from "../components/NutritionTable.js"
+import NutritionInput from "../components/Nutrition/NutritionInput.js"
+import NutritionTable from "../components/Nutrition/NutritionTable.js"
 import { addAnotherFood, setNutrientFields, addDailyFoods, deleteFood, formError } from "../actions"
 import { connect } from "react-redux";
 

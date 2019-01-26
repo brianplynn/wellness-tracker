@@ -1,5 +1,5 @@
 import React from 'react';
-import "./NutritionTable.css";
+
 const NutritionTable = ({ dailyFoods, deleteFood, addAnotherFood }) => {
 	const sumNutrient = (nutrient) => {
 		return dailyFoods[0] ? dailyFoods.map( food => Number(food[nutrient]))
@@ -53,7 +53,7 @@ const NutritionTable = ({ dailyFoods, deleteFood, addAnotherFood }) => {
 		        </tr>
 		      </tbody>
 		    </table>
-		    <p className="add-food-btn b ph3 pv2 center tc light-blue w5 ba br2 b--light-blue bg-transparent grow pointer f6"
+		    <p className="w5 b ph3 pv2 center tc light-blue ba br2 b--light-blue bg-transparent grow pointer f6"
 		       onClick={addAnotherFood}>
 		    	Add Another Food
 		    </p>

@@ -8,3 +8,4 @@ export const ADD_DAILY_FOOD = "ADD_DAILY_FOOD"
 export const ADD_ANOTHER_FOOD = "ADD_ANOTHER_FOOD"
 export const DELETE_FOOD = "DELETE_FOOD";
 export const FORM_ERROR = "FORM_ERROR";
+export const CHANGE_DATE = "CHANGE_DATE";
