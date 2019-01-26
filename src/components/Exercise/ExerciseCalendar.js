@@ -1,0 +1,32 @@
+import React from 'react';
+import "./ExerciseCalendar.css";
+
+const ExerciseCalendar = ({ changeDate, currentDate }) => {
+	const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+	return (<div className="w-80 center flex flex-wrap justify-center"> {
+		weekDays.map((day,i) => {
+			return i === currentDate.getDay() ?
+			(<article id="date" key={i} className="center tc w4 ba mv4">
+			  <h1  className="f4 pointer bg-washed-red br--top black-60 mv0 pv2 ph3">{day}</h1>
+			  <div className="pa3 ba b--washed-red">
+			    <p className="f6 f5-ns white lh-copy measure">		
+			    today!      
+			    </p>
+			  </div>
+			</article>
+			) : (<article id="date" key={i} data-key={i} onClick={changeDate} className="pointer center tc w4 ba mv4 mh0">
+			  <h1 data-key={i} className="f4 bg-near-white br--top black-60 mv0 pv2 ph3">{day}</h1>
+			  <div data-key={i} className="pa3 ba b--white">
+			    <p data-key={i} className="f6 f5-ns white lh-copy measure">		
+			    asdf      
+			    </p>
+			  </div>
+			</article>
+			)
+			})
+		}
+	</div>
+	);
+}
+
+export default ExerciseCalendar;
