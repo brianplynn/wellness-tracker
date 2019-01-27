@@ -1,7 +1,7 @@
 import React from 'react';
 import "./ExerciseCalendar.css";
 
-const ExerciseCalendar = ({ changeDate, currentDate }) => {
+const ExerciseCalendar = ({ changeDate, currentDate, workouts }) => {
 	const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	return (<div className="w-80 center flex flex-wrap justify-center"> {
 		weekDays.map((day,i) => {
@@ -10,7 +10,7 @@ const ExerciseCalendar = ({ changeDate, currentDate }) => {
 			  <h1  className="f4 pointer bg-washed-red br--top black-60 mv0 pv2 ph3">{day}</h1>
 			  <div className="pa3 ba b--washed-red">
 			    <p className="f6 f5-ns white lh-copy measure">		
-			    today!      
+			    {workouts[i].title}     
 			    </p>
 			  </div>
 			</article>
@@ -18,7 +18,7 @@ const ExerciseCalendar = ({ changeDate, currentDate }) => {
 			  <h1 data-key={i} className="f4 bg-near-white br--top black-60 mv0 pv2 ph3">{day}</h1>
 			  <div data-key={i} className="pa3 ba b--white">
 			    <p data-key={i} className="f6 f5-ns white lh-copy measure">		
-			    asdf      
+			    {workouts[i].title}      
 			    </p>
 			  </div>
 			</article>

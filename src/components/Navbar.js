@@ -1,17 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setActiveSection } from "../actions"
+import React from 'react';
 
-const mapStateToProps = (state) => ({});
-const mapDispatchToProps = (dispatch) => {
-	return {
-		setSection: (e) => dispatch(setActiveSection(e.target.title))
-	}
-};
-
-class Navbar extends Component {
-	render() {
-		const { setSection } = this.props;
+const Navbar = ({ setSection }) => {
 		return (
 			<header className="z-1 nav-bar w-100 ph3 pv3 pv4-ns ph4-m ph5-l">
 			  <nav className="f6 fw6 ttu tracked">
@@ -26,8 +15,7 @@ class Navbar extends Component {
 			    		onClick={setSection}>Exercise</span>
 			  </nav>
 			</header>
-			)
-	}
+		);	
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default Navbar;

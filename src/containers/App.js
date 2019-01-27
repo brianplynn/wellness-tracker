@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux"
 import './App.css';
-import Navbar from "../containers/Navbar.js";
+import Navbar from "../components/Navbar.js";
 import Main from "../components/Main.js";
+import { setActiveSection } from "../actions"
 
 const mapStateToProps = state => {
 	return {
@@ -10,14 +11,20 @@ const mapStateToProps = state => {
 	}
 }
 
+const mapDispatchToProps = (dispatch) => {
+	return {
+		setSection: (e) => dispatch(setActiveSection(e.target.title))
+	}
+};
 
 
 class App extends Component {
 	render() {
-		const { activeSection } = this.props;
+		const { activeSection, setSection } = this.props;
 	    return (
 	      <div className="App">
-	      	<div className="z-2"><Navbar />
+	      	<div className="z-2">
+	      	<Navbar setSection={setSection} />
 	      	<Main activeSection={activeSection}/>
 	      	</div>
 	      </div>
@@ -25,7 +32,7 @@ class App extends Component {
 	}
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 /* STRUCTURE:
 
