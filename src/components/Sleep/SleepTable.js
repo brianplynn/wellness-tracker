@@ -1,6 +1,6 @@
 import React from 'react';
 import "./SleepTable.css";
-const SleepTable = ({ sleepFields, currentDate, changeSleepField, saveSleepChanges }) => {
+const SleepTable = ({ sleepFields, sleepData, currentDate, changeSleepField, saveSleepChanges }) => {
 	const dropDown = () => {
 		document.querySelector(".dropdown-content").classList.toggle("hid");
 	}
@@ -21,7 +21,7 @@ const SleepTable = ({ sleepFields, currentDate, changeSleepField, saveSleepChang
 		       		return (
 		       	        		<tr key={i}>
 		       		        		<td className="pv3 b tc pr3 bt white b--white">
-		       		        			{currentDate.getMonth() + 1}/{currentDate.getDate() - 6 + i}
+		       		        			{sleepData.dates.slice().reverse()[i]}
 		       		        		</td>
 		       		        		<td className="pv3 b tc pr3 bt b--white">
 		       					    <input autoComplete="off" 
@@ -70,7 +70,7 @@ const SleepTable = ({ sleepFields, currentDate, changeSleepField, saveSleepChang
 		      </tbody>
 		    </table>
 		    <p className="w5 b ph3 pv2 center tc light-blue ba br2 b--light-blue bg-transparent grow pointer f6"
-		       onClick={saveSleepChanges.bind(null, sleepFields)}>
+		       onClick={saveSleepChanges.bind(null, sleepFields.slice().reverse())}>
 		    	Submit
 		    </p>
 		  </div>

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ReactDOM from 'react-dom';
-import * as V from 'victory';
 import SleepTable from "../components/Sleep/SleepTable.js";
 import SleepInput from "../components/Sleep/SleepInput.js";
 import SleepGraph from "../components/Sleep/SleepGraph.js";
@@ -26,9 +24,10 @@ class Sleep extends Component {
 				<SleepInput />
 				<SleepTable currentDate={currentDate}
 							sleepFields={sleepFields}
+							sleepData={sleepData}
 							changeSleepField={changeSleepField}
 							saveSleepChanges={saveSleepChanges} />
-				<SleepGraph />
+				<SleepGraph sleepData={sleepData}/>
 			</div>
 		);
 	}

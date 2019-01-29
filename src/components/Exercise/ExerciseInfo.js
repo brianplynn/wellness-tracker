@@ -98,7 +98,7 @@ const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, work
 				        		{workout.text}
 				        	</td>
 						    <td className="pv3 b tc pr3 bt b--white">
-						    	{workout.weight} { Number(workout.weight) > -1 ? "lbs" : "" }
+						    	{workout.weight} { Number(workout.weight) > 0 ? "lbs" : "" }
 						    </td>
 						    <td className="pv3 b tc pr3 bt b--white">
 						    	{workout.sets} { workout.sets ? "sets" : ""}
