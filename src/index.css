@@ -3,6 +3,7 @@
 body {
 	height: 100vh;
 	font-family: "Nunito Sans", sans-serif;
+	background-color: rgba(35, 0, 55, 1)
 }
 
 #root {

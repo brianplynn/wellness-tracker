@@ -1,4 +1,4 @@
-import { SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, FORM_ERROR, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
+import { DELETE_WORKOUT, SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, FORM_ERROR, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
 
 export const setActiveSection = (section) => ({
 	type: SET_ACTIVE_SECTION,
@@ -58,8 +58,12 @@ export const changeDate = (date) => ({
 	payload: date
 });
 
-export const editWorkout = () => ({
-	type: EDIT_WORKOUT
+export const editWorkout = (day, workout) => ({
+	type: EDIT_WORKOUT,
+	payload: {
+		day,
+		workout
+	}
 });
 
 export const changeWorkoutField = (day, row, col, value) => ({
@@ -90,5 +94,13 @@ export const saveWorkoutChanges = (day, fields) => ({
 	payload: {
 		day,
 		fields
+	}
+});
+
+export const deleteWorkout = (day, row) => ({
+	type: DELETE_WORKOUT,
+	payload: {
+		day,
+		row
 	}
 });

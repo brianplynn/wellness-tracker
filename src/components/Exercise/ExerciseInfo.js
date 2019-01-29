@@ -1,6 +1,7 @@
 import React from 'react';
+import "./ExerciseInfo.css";
 
-const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, workoutFields, changeWorkoutField, changeWorkoutTitle, addWorkout, saveChanges }) => {
+const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, workoutFields, changeWorkoutField, changeWorkoutTitle, addWorkout, deleteWorkout, saveChanges }) => {
 	const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 	const index = currentDate.getDay();
@@ -9,56 +10,77 @@ const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, work
 			<h1 className="tc white">{weekDays[index] + ", " + months[currentDate.getMonth()] + " " + currentDate.getDate()}</h1>
 			<div className="white tc">
 			{ editingWorkout ? 
-				<input data-day={index}
+				<input className="input-reset ba b--white pa2 f3 white bg-transparent center db tc mr2 mb2"
+					   data-day={index}
 					   value={workoutFields[index].title}
+					   placeholder="Workout Title"
 					   onChange={changeWorkoutTitle} /> 
-				: <h2>{workouts[index].workout[0] ? 
-						workouts[index].title 
-						: "No workout scheduled today. Kick your feet up or "
+			: 	<h2>{workouts[index].workoutList[0] ? 
+						<div className="flex justify-center align-center w-100 mw8 center">
+						<div className="w-100 f3 tc">{workouts[index].title}</div>
+						<div className="edit-btn tr pa2 b tc dim b--transparent bg-transparent pointer f6"
+								data-day={index}
+								data-workout={workouts[index]} 
+								onClick={editWorkout.bind(null, index, workouts[index])}>Edit Workout</div>
+						</div> 
+						: <div>
+							<span>No workout scheduled today. Kick your feet up or </span>  
+							<span className="b underline tc dim b--transparent bg-transparent pointer"
+								  onClick={editWorkout.bind(null, index, workouts[index])} >add a workout!</span>
+						  </div>
 					}
-				    {workouts[index].workout[0] ? 
-						<span className="b tc dim b--transparent bg-transparent pointer f6" 
-								onClick={editWorkout}>Edit Workout</span>
-						: <span className="b underline tc dim b--transparent bg-transparent pointer"
-								onClick={editWorkout}>add a workout!</span>
-					}
+				    
 				  </h2>
 			}
 			</div>
 			<div>{ editingWorkout ? 
-				 ( <table className="f6 w-30 mw8 center" cellSpacing="0">
-			      <tbody className="lh-copy">
-			      { workoutFields[index].workout.map( (workout, i) => {
+				 ( <table className="w-30 mw8 center" cellSpacing="0">
+			      <tbody className="lh-copy overflow-container">
+			      { workoutFields[index].workoutList.map( (workout, i) => {
 				        return (
-				        <tr key={i}>
-				        	<td className="pv3 b tc pr3 bt b--white">
-				        		<input data-day={index}
+				        <tr className="center"
+				        	key={i}>
+				        	<td className="pv3 b tc pr3">
+				        		<input className="input-reset ba b--white f5 pa2 white bg-transparent center db tc mr2 mb2"
+					   				   data-day={index}
 				        			   data-row={i}
 				        			   data-col="text"
 				        			   value={workout.text}
-				        			   onChange={changeWorkoutField} />
+				        			   onChange={changeWorkoutField}
+				        			   placeholder="Description" />
 				        	</td>
-						    <td className="pv3 b tc pr3 bt b--white">
-						    	<input data-day={index}
+						    <td className="pv3 b tc pr3">
+						    	<input className="input-reset ba b--white f5 pa2 white bg-transparent center db tc mr2 mb2"
+					   				   data-day={index}
 				        			   data-row={i}
 				        			   data-col="weight"
 				        			   value={workout.weight}
-				        			   onChange={changeWorkoutField} />
+				        			   onChange={changeWorkoutField}
+				        			   placeholder="Weight" />
 						    </td>
-						    <td className="pv3 b tc pr3 bt b--white">
-						    	<input data-day={index}
+						    <td className="pv3 b tc pr3">
+						    	<input className="input-reset ba b--white f5 pa2 white bg-transparent center db tc mr2 mb2"
+					   				   data-day={index}
 				        			   data-row={i}
 				        			   data-col="sets"
 				        			   value={workout.sets}
-				        			   onChange={changeWorkoutField} />
+				        			   onChange={changeWorkoutField}
+				        			   placeholder="Sets" />
 						    </td>
-						    <td className="pv3 b tc pr3 bt b--white">
-						    	<input data-day={index}
+						    <td className="pv3 b tc pr3">
+						    	<input className="input-reset ba b--white f5 pa2 white bg-transparent center db tc mr2 mb2"
+					   				   data-day={index}
 				        			   data-row={i}
 				        			   data-col="reps"
 				        			   value={workout.reps}
-				        			   onChange={changeWorkoutField} />
+				        			   onChange={changeWorkoutField}
+				        			   placeholder="Reps" />
 						    </td>
+						    <td>
+						    <button className="br-100 bw1 mb2 b pointer ba b--washed-red bg-transparent washed-red"
+			       	  			    data-day={index}
+				        			data-row={i}
+				        			onClick={deleteWorkout}>x</button></td>
 				        </tr>
 				        );
 			      	}
@@ -67,22 +89,23 @@ const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, work
 			    </table>
 			    )
 				:
-				 ( <table className="f6 w-30 mw8 center" cellSpacing="0">
+				 ( <table className="f4 w-100 mw8 center" cellSpacing="0">
 			      <tbody className="lh-copy">
-			      { workouts[index].workout.map( (workout, i) => {
+			      { workouts[index].workoutList.map( (workout, i) => {
 				        return (
 				        <tr key={i}>
 				        	<td className="pv3 b tc pr3 bt b--white">
 				        		{workout.text}
 				        	</td>
 						    <td className="pv3 b tc pr3 bt b--white">
-						    	{workout.weight}
+						    	{workout.weight} { Number(workout.weight) > -1 ? "lbs" : "" }
 						    </td>
 						    <td className="pv3 b tc pr3 bt b--white">
-						    	{workout.sets}
+						    	{workout.sets} { workout.sets ? "sets" : ""}
 						    </td>
+						    <td className="pv3 b tc pr3 bt b--white">{ workout.sets && workout.reps ? "x" : ""}</td>
 						    <td className="pv3 b tc pr3 bt b--white">
-						    	{workout.reps}
+						    	{workout.reps} { workout.reps ? "reps" : ""}
 						    </td>
 				        </tr>
 				        );
@@ -94,12 +117,12 @@ const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, work
 			}
 			</div>
 			<div> {editingWorkout ?
-					<React.Fragment>
-					<button data-day={index} onClick={addWorkout}>+</button> 
-					<div>
-						<button onClick={saveChanges.bind(null, index, workoutFields[index])}>Save</button>
+					<div className="flex justify-center">
+						<button className="b mr2 ph3 tc light-blue ba br2 b--light-blue bg-transparent grow pointer outline-0 f4"
+								data-day={index} onClick={addWorkout}>+</button> 
+						<button className="w4 b ph3 pv2 tc light-blue ba br2 b--light-blue bg-transparent grow pointer outline-0 f5"
+								onClick={saveChanges.bind(null, index, workoutFields[index])}>Save</button>
 					</div>
-					</React.Fragment>
 					: ""}
 			</div>
 		</div>
