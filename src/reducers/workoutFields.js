@@ -47,7 +47,7 @@ export const workoutFields = (state=initialWorkoutFieldsState, action={}) => {
 	switch (action.type) {
 		case EDIT_WORKOUT:
 			const workoutObj = Object.assign({}, action.payload.workout)
-			if (workoutObj.title == "Rest" || workoutObj.title == "Untitled Workout") { 
+			if (workoutObj.title === "Rest" || workoutObj.title === "Untitled Workout") { 
 				workoutObj.title = "";				
 			}
 			workoutObj.workoutList = workoutObj.workoutList.concat(emptyWorkout);

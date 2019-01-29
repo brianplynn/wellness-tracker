@@ -1,4 +1,4 @@
-import { DELETE_WORKOUT, SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, FORM_ERROR, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
+import { SAVE_SLEEP_CHANGES, CHANGE_SLEEP_FIELD, DELETE_WORKOUT, SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, FORM_ERROR, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
 
 export const setActiveSection = (section) => ({
 	type: SET_ACTIVE_SECTION,
@@ -103,4 +103,18 @@ export const deleteWorkout = (day, row) => ({
 		day,
 		row
 	}
+});
+
+export const changeSleepField = (row, col, value) => ({
+	type: CHANGE_SLEEP_FIELD,
+	payload: {
+		row,
+		col,
+		value,
+	}
+});
+
+export const saveSleepChanges = data => ({
+	type: SAVE_SLEEP_CHANGES,
+	payload: data
 });
