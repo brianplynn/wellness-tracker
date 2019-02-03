@@ -39,11 +39,11 @@ const SleepTable = ({ sleepFields, cancelSleep, sleepData, currentDate, changeSl
 		       					    		className="center b white tc pa1 br2 mb2 bg-transparent shadow-3">
 		       						  <option value={sleepFields[i].quality} className="b hid z-inherit dropbtn">{sleepFields[i].quality}</option>
 		       						    <option className="dropdown-option black-60 bg-light-gray br2 z-2 pv2 ph0 pointer bw0"
-		       					    	   	 value="good">Good</option>
+		       					    	   	 value="Good">Good</option>
 		       						    <option className="dropdown-option black-60 bg-light-gray br2 z-2 pv2 ph0 pointer bw0"
-		       					    	   	 value="ok">OK</option>
+		       					    	   	 value="OK">OK</option>
 		       						    <option className="dropdown-option black-60 bg-light-gray br2 z-2 pv2 ph0 pointer bw0"
-		       					    	   	 value="bad">Bad</option>
+		       					    	   	 value="Bad">Bad</option>
 		       						</select>
 		       						</td>
 		       					</tr>

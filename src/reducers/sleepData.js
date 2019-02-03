@@ -5,39 +5,39 @@ const initialSleepState = {
 	coordinates: [
 		{
 			date: 1,
-			hours: 0,
-			quality: ""
+			hours: 8,
+			quality: "Good"
 		},
 		{
 			date: 2,
-			hours: 0,
-			quality: "",
+			hours: 8.5,
+			quality: "Good",
 
 		},
 		{
 			date: 3,
-			hours: 0,
-			quality: "",
+			hours: 7.25,
+			quality: "OK",
 		},
 		{
 			date: 4,
-			hours: 0,
-			quality: "",
+			hours: 8,
+			quality: "Good",
 		},
 		{
 			date: 5,
-			hours: 0,
-			quality: "",
+			hours: 6,
+			quality: "Bad",
 		},
 		{
 			date: 6,
-			hours: 0,
-			quality: "",
+			hours: 9.25,
+			quality: "OK",
 		},
 		{
 			date: 7,
-			hours: 0,
-			quality: "",
+			hours: 3,
+			quality: "Bad",
 		}],
 	dates: []
 }

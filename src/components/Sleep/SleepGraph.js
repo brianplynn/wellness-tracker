@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { VictoryLine, VictoryChart, VictoryAxis, VictoryScatter, Point } from 'victory';
+import { VictoryLine, VictoryChart, VictoryAxis, VictoryScatter } from 'victory';
 import "./SleepGraph.css"
 
 const SleepGraph = ({ sleepData, editSleep }) => {
@@ -32,10 +31,6 @@ const SleepGraph = ({ sleepData, editSleep }) => {
             ticks: {stroke: "white", size: 5},
             tickLabels: {stroke: "transparent", fill: "white", fontSize: 12, padding: 5}
           }}
-          animate={{
-            duration: 2000,
-            easing: "bounce"
-          }}
           tickValues={[1, 2, 3, 4, 5, 6, 7]}
           tickFormat={sleepData.dates}
         />
@@ -49,23 +44,38 @@ const SleepGraph = ({ sleepData, editSleep }) => {
           tickFormat={(x) => (`${x} hr`)}
         />
         <VictoryLine
-        style={{
-          data: { stroke: "rgba(240,190,210,1)" },
-        }}
+          style={{
+            data: { stroke: "rgba(240,190,210,1)" },
+          }}
           data={sleepData.coordinates}
-           x="date"
+          x="date"
           y="hours"
+          animate={{
+            onLoad: {
+              duration: 2000,
+              before: () => ({ _y: 0 }),
+              after: (datum) => ({  _y: datum._y })
+            }
+          }}
         />
         <VictoryScatter
           size={5}
           style={{
             data: {
-              fill: (d) => d.quality === "good" ? "white" : (d.quality === "ok" ? "rgba(255,255,155,1)" : "rgba(255,155,155,1)")
+              fill: (d) => d.quality === "Good" ? "white" : (d.quality === "OK" ? "rgba(255,255,155,1)" : "rgba(255,155,155,1)"),
+              opacity: (d) => d.opacity || 1
             }
           }}
           data={sleepData.coordinates}
           x="date"
           y="hours"
+          animate={{
+            onLoad: {
+              duration: 2000,
+              before: () => ({ _y: 0 }),
+              after: (datum) => ({  _y: datum._y })
+            }
+          }}
         />
       </VictoryChart>
       </div>

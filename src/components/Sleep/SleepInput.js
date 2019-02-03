@@ -12,7 +12,7 @@ const SleepInput = ({ currentDate, sleepAddForm, changeSleepAddForm, addSleepToG
 		    <label htmlFor="name" className="f4 fw7 tc center b db mt4 mb3">Time</label>
 		    <div className="flex justify-center">
 			    <input autoComplete="off" 
-			    	   className="input-reset ba b--white pa2 white bg-transparent mb2 db w-20 mw4 mr2" 
+			    	   className="input-reset ba b--white pa2 white bg-transparent mb2 db w-20 mw3 mr2" 
 			    	   type="text" 
 			    	   aria-describedby="name-desc" 
 			    	   placeholder="0"
@@ -21,7 +21,7 @@ const SleepInput = ({ currentDate, sleepAddForm, changeSleepAddForm, addSleepToG
 			    	   onChange={changeSleepAddForm} />
 			    <div className="f3"> : </div>
 			    <input autoComplete="off" 
-			    	   className="input-reset ba b--white pa2 white bg-transparent mb2 db w-20 mw4 ml1" 
+			    	   className="input-reset ba b--white pa2 white bg-transparent mb2 db w-20 mw3 ml1" 
 			    	   type="text" 
 			    	   aria-describedby="name-desc" 
 			    	   placeholder="00"
@@ -30,25 +30,25 @@ const SleepInput = ({ currentDate, sleepAddForm, changeSleepAddForm, addSleepToG
 			    	   onChange={changeSleepAddForm} />
 		 	</div>
 		  </div>
-		  <fieldset className="mt4 mb4 bn">
+		  <fieldset className="mt4 mb4 w-60 center bn">
 		    <legend className="center tc fw7 f4 mt5 mb3">Quality</legend>
 		    <div className="flex justify-around">
-			    <label class="container" >
+			    <label className="container" data-field="quality" value={sleepAddForm.quality}>
 			    	<div className="b mt1 ml1 f5">Good</div>
-				  <input type="radio" name="quality" />
-				  <span class="checkmark"></span>
+				  <input onClick={changeSleepAddForm} value="Good" data-field="quality" type="radio" name="quality" />
+				  <span className="checkmark"></span>
 				</label>
 
-				<label class="container">
+				<label className="container" data-field="quality" value={sleepAddForm.quality}>
 					<div className="b mt1 ml1 f5">OK</div>
-				  <input type="radio" name="quality" />
-				  <span class="checkmark"></span>
+				  <input onClick={changeSleepAddForm} value="OK" data-field="quality" type="radio" name="quality" />
+				  <span className="checkmark"></span>
 				</label>
 
-				<label class="container">
+				<label className="container" data-field="quality" value={sleepAddForm.quality}>
 					<div className="b mt1 ml1 f5">Bad</div>
-				  <input type="radio" name="quality" />
-				  <span class="checkmark"></span>
+				  <input onClick={changeSleepAddForm} value="Bad" data-field="quality" type="radio" name="quality" />
+				  <span className="checkmark"></span>
 				</label>
 		    </div>
 		  </fieldset>
