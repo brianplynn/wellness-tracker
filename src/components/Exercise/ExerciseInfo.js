@@ -1,7 +1,7 @@
 import React from 'react';
 import "./ExerciseInfo.css";
 
-const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, workoutFields, changeWorkoutField, changeWorkoutTitle, addWorkout, deleteWorkout, saveChanges }) => {
+const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, cancelWorkoutEdit, workouts, workoutFields, changeWorkoutField, changeWorkoutTitle, addWorkout, deleteWorkout, saveChanges }) => {
 	const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 	const index = currentDate.getDay();
@@ -10,11 +10,19 @@ const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, work
 			<h1 className="tc white">{weekDays[index] + ", " + months[currentDate.getMonth()] + " " + currentDate.getDate()}</h1>
 			<div className="white tc">
 			{ editingWorkout ? 
-				<input className="input-reset ba b--white pa2 f3 white bg-transparent center db tc mr2 mb2"
+				<div className="flex justify-center align-center w-100 mw8 center mb2">
+				<div className="w-100">
+				<input className="input-reset ba b--white pa2 f3 white bg-transparent center tc mr2"
 					   data-day={index}
 					   value={workoutFields[index].title}
 					   placeholder="Workout Title"
-					   onChange={changeWorkoutTitle} /> 
+					   onChange={changeWorkoutTitle} />
+				</div>
+				<div className="add-btn">	   
+				<button className="b pv2 ph3 tc light-blue ba br2 b--light-blue bg-transparent grow pointer outline-0 f4"
+								data-day={index} onClick={addWorkout}>+</button>  
+				</div>
+				</div>
 			: 	<h2>{workouts[index].workoutList[0] ? 
 						<div className="flex justify-center align-center w-100 mw8 center">
 						<div className="w-100 f3 tc">{workouts[index].title}</div>
@@ -64,6 +72,7 @@ const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, work
 				        			   data-row={i}
 				        			   data-col="sets"
 				        			   value={workout.sets}
+				        			   type="number"
 				        			   onChange={changeWorkoutField}
 				        			   placeholder="Sets" />
 						    </td>
@@ -73,6 +82,7 @@ const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, work
 				        			   data-row={i}
 				        			   data-col="reps"
 				        			   value={workout.reps}
+				        			   type="number"
 				        			   onChange={changeWorkoutField}
 				        			   placeholder="Reps" />
 						    </td>
@@ -118,11 +128,11 @@ const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, workouts, work
 			</div>
 			<div> {editingWorkout ?
 					<div className="flex justify-center">
-						<button className="b mr2 ph3 tc light-blue ba br2 b--light-blue bg-transparent grow pointer outline-0 f4"
-								data-day={index} onClick={addWorkout}>+</button> 
-						<button className="w4 b ph3 pv2 tc light-blue ba br2 b--light-blue bg-transparent grow pointer outline-0 f5"
+						<button className="w4 b mr1 ph3 tc light-silver ba br2 b--light-silver bg-transparent grow pointer outline-0 f4"
+								data-day={index} onClick={cancelWorkoutEdit}>Cancel</button> 
+					    <button className="w4 b ml2 ph3 pv2 tc light-blue ba br2 b--light-blue bg-transparent grow pointer outline-0 f5"
 								onClick={saveChanges.bind(null, index, workoutFields[index])}>Save</button>
-					</div>
+						</div>
 					: ""}
 			</div>
 		</div>

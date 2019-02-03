@@ -1,7 +1,7 @@
 import React from 'react';
 import "./NutritionInput.css";
 
-const NutritionInput = ({ formErrorText, nutrientFields, onFieldChange, onSubmit }) => {
+const NutritionInput = ({ cancelFood, formErrorText, nutrientFields, onFieldChange, onSubmit }) => {
 	const { food, calories, fat, carbs, protein } = nutrientFields;
 	const formCorrect = food && Number(calories) && Number(fat) && Number(carbs) && Number(protein);
 	return (
@@ -22,7 +22,7 @@ const NutritionInput = ({ formErrorText, nutrientFields, onFieldChange, onSubmit
 		    </label>
 		    <input id="calories" 
 		    	   className="food-input-cal input-reset bg-transparent white center ba b--white pa2 mb2 db w-100" 
-		    	   type="text" aria-describedby="calories-desc" 
+		    	   type="number" aria-describedby="calories-desc" 
 		    	   autoComplete="off"
 		    	   value={calories} 
 		    	   onChange={onFieldChange} />
@@ -32,7 +32,7 @@ const NutritionInput = ({ formErrorText, nutrientFields, onFieldChange, onSubmit
 		    </label>
 		    <input id="fat" 
 		    	   className="food-input input-reset bg-transparent white center ba b--white pa2 mb2 db w-100" 
-		    	   type="text" aria-describedby="fat-desc" 
+		    	   type="number" aria-describedby="fat-desc" 
 		    	   autoComplete="off"
 		    	   value={fat} 
 		    	   onChange={onFieldChange} />
@@ -42,7 +42,7 @@ const NutritionInput = ({ formErrorText, nutrientFields, onFieldChange, onSubmit
 		    </label>
 		    <input id="carbs" 
 		    	   className="food-input input-reset bg-transparent white center ba b--white pa2 mb2 db w-100" 
-		    	   type="text" aria-describedby="carbs-desc"
+		    	   type="number" aria-describedby="carbs-desc"
 		    	   autoComplete="off"
 		    	   value={carbs} 
 		    	   onChange={onFieldChange} />
@@ -52,7 +52,7 @@ const NutritionInput = ({ formErrorText, nutrientFields, onFieldChange, onSubmit
 		    </label>
 		    <input id="protein" 
 		    	   className="food-input white input-reset bg-transparent center ba b--white pa2 mb2 db w-90" 
-		    	   type="text" aria-describedby="protein-desc"
+		    	   type="number" aria-describedby="protein-desc"
 		    	   autoComplete="off"
 		    	   value={protein} 
 		    	   onChange={onFieldChange}  />
@@ -60,10 +60,16 @@ const NutritionInput = ({ formErrorText, nutrientFields, onFieldChange, onSubmit
 		  </div>
 		  </div>
 		  <div className="mt3">
-		  <p className="w4 b ph3 pv2 center tc light-blue ba br2 b--light-blue bg-transparent grow pointer f6"
-		  		  onClick={onSubmit.bind(null, nutrientFields, formCorrect)}>
-		  		  Submit
-		  </p>
+			  <div className="flex justify-center">
+				  <button className="w4 b ph3 pv2 mr1 tc light-silver ba br2 b--light-silver bg-transparent grow pointer outline-0 f6"
+						  type="submit"
+						  onClick={cancelFood}
+						  >Cancel</button> 
+				  <button className="w4 b ph3 pv2 ml1 tc light-blue ba br2 b--light-blue bg-transparent grow outline-0 pointer f6"
+				  		  onClick={onSubmit.bind(null, nutrientFields, formCorrect)}>
+				  		  Submit
+				  </button>
+			  </div>
 		  <div id="name-desc" className="hid center bg-white br2 f6 db w5 pa2 hid mt1 ">
 	    	<svg className="w1" data-icon="info" viewBox="0 0 32 32">
 			    <title>info icon</title>

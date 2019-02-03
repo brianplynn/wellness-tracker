@@ -1,36 +1,63 @@
 import React from 'react';
 import "./SleepInput.css";
 
-const SleepInput = () => {
+const SleepInput = ({ currentDate, sleepAddForm, changeSleepAddForm, addSleepToGraph }) => {
 	return (
 		<form className="form-sleep pa4 white center ba w-50 br2">
-		  <div className="">
-		    <label htmlFor="name" className="f5 fw7 tc center b db mb2">Time</label>
+		  <h1 className="tc">Good {currentDate.getHours() < 12 ? "Morning" : (currentDate.getHours() < 18 ? "Afternoon" : "Evening")}!
+		  </h1>
+		  <h2 className="tc f3">Input last night's sleep here:
+		  </h2>
+		  <div>
+		    <label htmlFor="name" className="f4 fw7 tc center b db mt4 mb3">Time</label>
 		    <div className="flex justify-center">
-		    <input id="name" autoComplete="off" className="input-reset ba b--white pa2 white bg-transparent mb2 db w-20 mw4 mr2" type="text" aria-describedby="name-desc" placeholder="0" />
-		    <div className="f3"> : </div><input id="name" autoComplete="off" className="input-reset ba b--white pa2 white bg-transparent mb2 db w-20 mw4 ml1" type="text" aria-describedby="name-desc" placeholder="00" />
+			    <input autoComplete="off" 
+			    	   className="input-reset ba b--white pa2 white bg-transparent mb2 db w-20 mw4 mr2" 
+			    	   type="text" 
+			    	   aria-describedby="name-desc" 
+			    	   placeholder="0"
+			    	   data-field="hours"
+			    	   value={sleepAddForm.hours}
+			    	   onChange={changeSleepAddForm} />
+			    <div className="f3"> : </div>
+			    <input autoComplete="off" 
+			    	   className="input-reset ba b--white pa2 white bg-transparent mb2 db w-20 mw4 ml1" 
+			    	   type="text" 
+			    	   aria-describedby="name-desc" 
+			    	   placeholder="00"
+			    	   data-field="minutes"
+			    	   value={sleepAddForm.minutes}
+			    	   onChange={changeSleepAddForm} />
 		 	</div>
 		  </div>
-		  <fieldset id="favorite_movies" className="mt4 bn">
-		    <legend className="center tc fw7 f5 mb2">Quality</legend>
+		  <fieldset className="mt4 mb4 bn">
+		    <legend className="center tc fw7 f4 mt5 mb3">Quality</legend>
 		    <div className="flex justify-around">
-			    <div className="flex flex-column items-center mb2">
-			      <input className="mr2 bg-transparent white ba b--white br2" type="radio" name="mood" value="good" />
-			      <label htmlFor="spacejam" className="lh-copy">Good</label>
-			    </div>
-			    <div className="flex flex-column items-center mb2">
-			      <input className="mr2 bg-transparent white ba b--white br2" type="radio" name="mood" value="ok" />
-			      <label htmlFor="airbud" className="lh-copy">OK</label>
-			    </div>
-			    <div className="flex flex-column items-center mb2">
-			      <input className="mr2 bg-transparent white ba b--white br2" type="radio" name="mood" value="bad" />
-			      <label htmlFor="hocuspocus" className="lh-copy">Bad</label>
-			    </div>
+			    <label class="container" >
+			    	<div className="b mt1 ml1 f5">Good</div>
+				  <input type="radio" name="quality" />
+				  <span class="checkmark"></span>
+				</label>
+
+				<label class="container">
+					<div className="b mt1 ml1 f5">OK</div>
+				  <input type="radio" name="quality" />
+				  <span class="checkmark"></span>
+				</label>
+
+				<label class="container">
+					<div className="b mt1 ml1 f5">Bad</div>
+				  <input type="radio" name="quality" />
+				  <span class="checkmark"></span>
+				</label>
 		    </div>
 		  </fieldset>
-		  <p className="w4 b ph3 pv2 center tc light-blue ba br2 b--light-blue bg-transparent grow pointer f6">
+		  <button type="submit" 
+		  		  className="db w4 b ph3 pv2 center tc light-blue ba br2 b--light-blue bg-transparent grow pointer f6"
+		  		  onClick={addSleepToGraph.bind(null, sleepAddForm)}
+		  		  >
 		  	Submit
-		  </p>
+		  </button>
 		</form>
 
 	);

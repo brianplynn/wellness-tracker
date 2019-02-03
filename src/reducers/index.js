@@ -10,6 +10,9 @@ import sleepFields from "./sleepFields.js";
 import workouts from "./workouts.js";
 import editingWorkout from "./editingWorkout.js";
 import { workoutFields } from "./workoutFields.js";
+import addingSleep from "./addingSleep.js";
+import editingSleepData from "./editingSleepData.js";
+import sleepAddForm from "./sleepAddForm.js";
 
 
 export default combineReducers({
@@ -19,8 +22,11 @@ export default combineReducers({
 	dailyFoods,
 	displayTable,
 	formErrorText,
+	addingSleep,
+	editingSleepData,
 	sleepData,
 	sleepFields,
+	sleepAddForm,
 	workouts,
 	editingWorkout,
 	workoutFields

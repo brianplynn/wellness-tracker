@@ -3,31 +3,49 @@ import { connect } from "react-redux";
 import SleepTable from "../components/Sleep/SleepTable.js";
 import SleepInput from "../components/Sleep/SleepInput.js";
 import SleepGraph from "../components/Sleep/SleepGraph.js";
-import { saveSleepChanges, changeSleepField } from  "../actions";
+import { cancelSleep, editSleep, saveSleepChanges, changeSleepField, addSleepToGraph, changeSleepAddForm } from  "../actions";
 
 const mapStateToProps = state => ({
 	currentDate: state.currentDate,
 	sleepFields: state.sleepFields,
-	sleepData: state.sleepData
+	sleepAddForm: state.sleepAddForm,
+	sleepData: state.sleepData,
+	addingSleep: state.addingSleep,
+	editingSleepData: state.editingSleepData
 });
 
 const mapDispatchToProps = dispatch => ({
-	changeSleepField: (e) => dispatch(changeSleepField(e.target.dataset.row, e.target.dataset.col, e.target.value)),
-	saveSleepChanges: (data) => dispatch(saveSleepChanges(data))
+	changeSleepField: (row, col, e) => dispatch(changeSleepField(row, col, e.target.value)),
+	saveSleepChanges: (data) => dispatch(saveSleepChanges(data)),
+	changeSleepAddForm: (e) => dispatch(changeSleepAddForm(e.target.dataset.field, e.target.value)),
+	addSleepToGraph: (data, e) => {
+		e.preventDefault();
+		return dispatch(addSleepToGraph(data));
+	},
+	editSleep: (data) => dispatch(editSleep(data)),
+	cancelSleep: () => dispatch(cancelSleep())
 });
 
 class Sleep extends Component {
 	render() {
-		const { currentDate, sleepData, sleepFields, changeSleepField, saveSleepChanges } = this.props;
+		const { currentDate, cancelSleep, editSleep, sleepAddForm, changeSleepAddForm, addSleepToGraph, addingSleep, editingSleepData, sleepData, sleepFields, changeSleepField, saveSleepChanges } = this.props;
 		return (
-			<div>
-				<SleepInput />
+			<div> {
+				addingSleep ? <SleepInput currentDate={currentDate}
+										  changeSleepAddForm={changeSleepAddForm}
+										  sleepAddForm={sleepAddForm}
+										  addSleepToGraph={addSleepToGraph}/>
+				: ( editingSleepData ?
 				<SleepTable currentDate={currentDate}
 							sleepFields={sleepFields}
 							sleepData={sleepData}
 							changeSleepField={changeSleepField}
-							saveSleepChanges={saveSleepChanges} />
-				<SleepGraph sleepData={sleepData}/>
+							saveSleepChanges={saveSleepChanges}
+							cancelSleep={cancelSleep} />
+				: <SleepGraph sleepData={sleepData}
+							  editSleep={editSleep}/>
+					)
+				}
 			</div>
 		);
 	}

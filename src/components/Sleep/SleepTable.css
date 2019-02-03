@@ -13,16 +13,8 @@
 
 .dropdown-content {
 	z-index: 4;
-	margin-bottom: -4.5em;
+	margin-bottom: -6.5em;
 	cursor: pointer;
 	background-color: rgba(70, 0, 90, 1);
 	border-radius: 10%;
-}
-
-.dropdown-option {
-	color: white;
-}
-
-.dropdown-option:hover {
-	color: rgba(240,190,210,1);
 }

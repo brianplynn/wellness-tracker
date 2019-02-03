@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ExerciseCalendar from "../components/Exercise/ExerciseCalendar.js"
 import ExerciseInfo from "../components/Exercise/ExerciseInfo.js";
-import { addWorkout, deleteWorkout, saveWorkoutChanges, changeDate, editWorkout, changeWorkoutField, changeWorkoutTitle } from "../actions";
+import { cancelWorkoutEdit, addWorkout, deleteWorkout, saveWorkoutChanges, changeDate, editWorkout, changeWorkoutField, changeWorkoutTitle } from "../actions";
 
 const mapStateToProps = state => ({
 	currentDate: state.currentDate,
@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	changeDate: (e) => 	dispatch(changeDate(e.target.dataset.key)),
 	editWorkout: (day, workout) => dispatch(editWorkout(day, workout)),
+	cancelWorkoutEdit: () => dispatch(cancelWorkoutEdit()),
 	changeWorkoutField: (e) => dispatch(changeWorkoutField(e.target.dataset.day, e.target.dataset.row, e.target.dataset.col, e.target.value)),
 	changeWorkoutTitle: (e) => dispatch(changeWorkoutTitle(e.target.dataset.day, e.target.value)),
 	addWorkout: (e) => dispatch(addWorkout(e.target.dataset.day)),
@@ -23,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Exercise extends Component {
 	render() {
-		const { currentDate, saveChanges, addWorkout, deleteWorkout, changeWorkoutField, changeWorkoutTitle, editingWorkout, editWorkout, workouts, workoutFields, changeDate } = this.props;
+		const { currentDate, saveChanges, cancelWorkoutEdit, addWorkout, deleteWorkout, changeWorkoutField, changeWorkoutTitle, editingWorkout, editWorkout, workouts, workoutFields, changeDate } = this.props;
 		return (
 			<div>
 				<ExerciseCalendar currentDate={currentDate}
@@ -32,6 +33,7 @@ class Exercise extends Component {
 				<ExerciseInfo currentDate={currentDate}
 							  addWorkout={addWorkout}
 							  deleteWorkout={deleteWorkout}
+							  cancelWorkoutEdit={cancelWorkoutEdit}
 							  changeWorkoutField={changeWorkoutField}
 							  changeWorkoutTitle={changeWorkoutTitle}
 							  saveChanges={saveChanges}

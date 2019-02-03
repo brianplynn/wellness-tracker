@@ -13,7 +13,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
 	onFieldChange: (e) => dispatch(setNutrientFields(e.target.id, e.target.value)),
-	onSubmit: (food, formCorrect) => {
+	onSubmit: (food, formCorrect, e) => {
+		e.preventDefault();
 		if (formCorrect) { 
 			return dispatch(addDailyFoods(food)); 
 		} else {
