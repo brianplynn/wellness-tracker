@@ -4,7 +4,6 @@ import currentDate from "./currentDate.js"
 import nutrientFields from "./nutrientFields.js";
 import dailyFoods from "./dailyFoods.js";
 import displayTable from "./displayTable.js";
-import formErrorText from "./formErrorText.js";
 import sleepData from "./sleepData.js";
 import sleepFields from "./sleepFields.js";
 import workouts from "./workouts.js";
@@ -21,7 +20,6 @@ export default combineReducers({
 	nutrientFields,
 	dailyFoods,
 	displayTable,
-	formErrorText,
 	addingSleep,
 	editingSleepData,
 	sleepData,

@@ -1,7 +1,7 @@
 import { SET_ACTIVE_SECTION, SAVE_SLEEP_CHANGES, ADD_SLEEP_TO_GRAPH } from "../constants/action-types.js"
 import { arrayReplace } from "./workoutFields.js"
 
-const initialSleepState = {
+const testingSleepState = {
 	coordinates: [
 		{
 			date: 1,
@@ -41,6 +41,48 @@ const initialSleepState = {
 		}],
 	dates: []
 }
+
+const initialSleepState = {
+	coordinates: [
+		{
+			date: 1,
+			hours: 0,
+			quality: ""
+		},
+		{
+			date: 2,
+			hours: 0,
+			quality: "",
+
+		},
+		{
+			date: 3,
+			hours: 0,
+			quality: "",
+		},
+		{
+			date: 4,
+			hours: 0,
+			quality: "",
+		},
+		{
+			date: 5,
+			hours: 0,
+			quality: "",
+		},
+		{
+			date: 6,
+			hours: 0,
+			quality: "",
+		},
+		{
+			date: 7,
+			hours: 0,
+			quality: "",
+		}],
+	dates: []
+}
+
 
 const sleepData = (state=initialSleepState, action={}) => {
 	switch (action.type) {

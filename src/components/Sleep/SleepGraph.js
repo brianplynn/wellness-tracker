@@ -52,7 +52,7 @@ const SleepGraph = ({ sleepData, editSleep }) => {
           y="hours"
           animate={{
             onLoad: {
-              duration: 2000,
+              duration: 1500,
               before: () => ({ _y: 0 }),
               after: (datum) => ({  _y: datum._y })
             }
@@ -71,7 +71,7 @@ const SleepGraph = ({ sleepData, editSleep }) => {
           y="hours"
           animate={{
             onLoad: {
-              duration: 2000,
+              duration: 1500,
               before: () => ({ _y: 0 }),
               after: (datum) => ({  _y: datum._y })
             }

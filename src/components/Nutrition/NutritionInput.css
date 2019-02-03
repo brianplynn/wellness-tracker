@@ -9,10 +9,11 @@
 	border-color: rgba(240,190,210,1);
 }
 
-.container-1 {
+.nutrient-container {
 	display: flex;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 	flex-wrap: wrap;
-	justify-content: center;
 }
 
 .food-input {
@@ -27,35 +28,41 @@
 	min-width: 8em;
 }
 
-#name-desc {
-	display: flex;
-	align-items: center;
-	margin-top: -5px;
-	margin-bottom: -5px;
-}
-
-.vis {
-  visibility: visible;
-}
-
-.hid {
-  visibility: hidden;
-}
-
 .nutrient-container-sm {
 	text-align: center;
 	width: 25%;
-	margin: 0em 2em;
 }
 
 .nutrient-container-md {
 	text-align: center;
 	width: 25%;
-	margin: 0em 2em;
 }
 
 .nutrient-container-l {
 	text-align: center;
 	width: 100%;
-	margin: 0em 2em;
 }
+
+.search-btn {
+	margin-top: .15rem;
+}
+
+@media (max-width: 1748px) {
+	.search-container {
+		margin-left: auto !important;
+		margin-right: auto;
+	}
+
+}
+
+@media (max-width: 1500px) {
+	.ml-shrink {
+		margin-left: auto !important;
+		margin-right: auto;
+	}
+
+	h1 {
+		text-align: center;	
+	}
+}
+

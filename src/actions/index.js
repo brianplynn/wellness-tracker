@@ -1,4 +1,4 @@
-import { CANCEL_SLEEP, EDIT_SLEEP, CHANGE_SLEEP_ADD_FORM, ADD_SLEEP_TO_GRAPH, CANCEL_WORKOUT_EDIT, SAVE_SLEEP_CHANGES, CHANGE_SLEEP_FIELD, DELETE_WORKOUT, SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, FORM_ERROR, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
+import { CANCEL_FOOD, SET_EDAMAME_FIELD, EDAMAME_PENDING, EDAMAME_SUCCESS, EDAMAME_FAILURE, CANCEL_SLEEP, EDIT_SLEEP, CHANGE_SLEEP_ADD_FORM, ADD_SLEEP_TO_GRAPH, CANCEL_WORKOUT_EDIT, SAVE_SLEEP_CHANGES, CHANGE_SLEEP_FIELD, DELETE_WORKOUT, SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
 
 export const setActiveSection = (section) => ({
 	type: SET_ACTIVE_SECTION,
@@ -7,6 +7,11 @@ export const setActiveSection = (section) => ({
 
 export const setNutrientFields = (id, text) => {
 	switch (id) {
+		case "edamame":
+			return ({
+				type: SET_EDAMAME_FIELD,
+				payload: text
+			});
 		case "food":
 			return ({
 				type: SET_FOOD_FIELD,
@@ -43,10 +48,6 @@ export const addDailyFoods = (food) => ({
 export const deleteFood = (num) => ({
 	type: DELETE_FOOD,
 	payload: num
-});
-
-export const formError = () => ({
-	type: FORM_ERROR
 });
 
 export const addAnotherFood = () => ({
@@ -145,3 +146,21 @@ export const editSleep = data => ({
 export const cancelSleep = () => ({
 	type: CANCEL_SLEEP
 });
+
+export const cancelFood = () => ({
+	type: CANCEL_FOOD
+});
+
+export const submitEdamameField = (text) => (dispatch) => {
+	dispatch({ type: EDAMAME_PENDING, payload: text});
+	fetch(`https://api.edamam.com/api/food-database/parser?ingr=${text}&app_id=512ac9bf&app_key=cb25735e5b566f1cb8a9cb5cd2f5f95b`)
+		.then(res => res.json())
+		.then(food => {
+			console.log(food);
+			dispatch({ type: EDAMAME_SUCCESS, payload: food});
+		})
+		.catch(err => {
+			console.log(err);
+			dispatch({ type: EDAMAME_FAILURE, payload: err});
+		})
+	}
