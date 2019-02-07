@@ -5,7 +5,7 @@ import "./SleepGraph.css"
 const SleepGraph = ({ sleepData, editSleep }) => {
 	const hoursArr=sleepData.coordinates.map(item => item.hours);
   return (
-    <div className="w-80 mw8 center flex flex-column">
+    <div className="w-70 mw8 center flex flex-column">
     <div className="z-3 flex graph-header">
       <div className="w-100">
           <h1 className="white tc">Your 7-day sleep totals</h1>
@@ -45,7 +45,7 @@ const SleepGraph = ({ sleepData, editSleep }) => {
         />
         <VictoryLine
           style={{
-            data: { stroke: "rgba(240,190,210,1)" },
+            data: { stroke: "white" },
           }}
           data={sleepData.coordinates}
           x="date"
@@ -62,7 +62,7 @@ const SleepGraph = ({ sleepData, editSleep }) => {
           size={5}
           style={{
             data: {
-              fill: (d) => d.quality === "Good" ? "white" : (d.quality === "OK" ? "rgba(255,255,155,1)" : "rgba(255,155,155,1)"),
+              fill: (d) => d.quality === "Good" ? "rgba(155,255,155,1)" : (d.quality === "OK" ? "rgba(255,255,155,1)" : "rgba(255,155,155,1)"),
               opacity: (d) => d.opacity || 1
             }
           }}

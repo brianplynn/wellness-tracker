@@ -2,6 +2,7 @@ import { combineReducers } from "redux";
 import activeSection from "./activeSection.js";
 import currentDate from "./currentDate.js"
 import nutrientFields from "./nutrientFields.js";
+import edamame from "./edamame.js";
 import dailyFoods from "./dailyFoods.js";
 import displayTable from "./displayTable.js";
 import sleepData from "./sleepData.js";
@@ -18,6 +19,7 @@ export default combineReducers({
 	activeSection,
 	currentDate,
 	nutrientFields,
+	edamame,
 	dailyFoods,
 	displayTable,
 	addingSleep,

@@ -53,9 +53,9 @@ const NutritionTable = ({ dailyFoods, deleteFood, addAnotherFood }) => {
 		        </tr>
 		      </tbody>
 		    </table>
-		    <p className="w5 b ph3 pv2 center tc light-blue ba br2 b--light-blue bg-transparent grow pointer f6"
+		    <p className="w4 b ph3 pv2 center tc light-blue ba br2 b--light-blue bg-transparent grow pointer f6"
 		       onClick={addAnotherFood}>
-		    	Add Another Food
+		    	Add Food
 		    </p>
 		  </div>
 		</div>

@@ -6,7 +6,7 @@ const SleepInput = ({ currentDate, sleepAddForm, changeSleepAddForm, addSleepToG
 		<form className="form-sleep pa4 white center ba w-50 br2">
 		  <h1 className="tc">Good {currentDate.getHours() < 12 ? "Morning" : (currentDate.getHours() < 18 ? "Afternoon" : "Evening")}!
 		  </h1>
-		  <h2 className="tc f3">Input last night's sleep here:
+		  <h2 className="tc f3">Enter last night's sleep here:
 		  </h2>
 		  <div>
 		    <label htmlFor="name" className="f4 fw7 tc center b db mt4 mb3">Time</label>

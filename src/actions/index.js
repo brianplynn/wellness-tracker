@@ -1,4 +1,4 @@
-import { CANCEL_FOOD, SET_EDAMAME_FIELD, EDAMAME_PENDING, EDAMAME_SUCCESS, EDAMAME_FAILURE, CANCEL_SLEEP, EDIT_SLEEP, CHANGE_SLEEP_ADD_FORM, ADD_SLEEP_TO_GRAPH, CANCEL_WORKOUT_EDIT, SAVE_SLEEP_CHANGES, CHANGE_SLEEP_FIELD, DELETE_WORKOUT, SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
+import { SELECT_EDAMAME, CANCEL_FOOD, SET_EDAMAME_FIELD, EDAMAME_PENDING, EDAMAME_SUCCESS, EDAMAME_FAILURE, CANCEL_SLEEP, EDIT_SLEEP, CHANGE_SLEEP_ADD_FORM, ADD_SLEEP_TO_GRAPH, CANCEL_WORKOUT_EDIT, SAVE_SLEEP_CHANGES, CHANGE_SLEEP_FIELD, DELETE_WORKOUT, SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
 
 export const setActiveSection = (section) => ({
 	type: SET_ACTIVE_SECTION,
@@ -153,14 +153,19 @@ export const cancelFood = () => ({
 
 export const submitEdamameField = (text) => (dispatch) => {
 	dispatch({ type: EDAMAME_PENDING, payload: text});
-	fetch(`https://api.edamam.com/api/food-database/parser?ingr=${text}&app_id=512ac9bf&app_key=cb25735e5b566f1cb8a9cb5cd2f5f95b`)
+	fetch(`https://api.edamam.com/api/food-database/parser?nutrition-type=logging&ingr=${text}&app_id=512ac9bf&app_key=cb25735e5b566f1cb8a9cb5cd2f5f95b`)
 		.then(res => res.json())
 		.then(food => {
-			console.log(food);
+			if (!food.hints[0]) throw new Error("0 results");
 			dispatch({ type: EDAMAME_SUCCESS, payload: food});
 		})
 		.catch(err => {
-			console.log(err);
 			dispatch({ type: EDAMAME_FAILURE, payload: err});
 		})
-	}
+}
+
+export const selectEdamame = (food) => ({
+	type: SELECT_EDAMAME,
+	payload: food
+})
+

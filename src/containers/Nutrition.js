@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import NutritionInput from "../components/Nutrition/NutritionInput.js"
 import NutritionTable from "../components/Nutrition/NutritionTable.js"
-import { addAnotherFood, cancelFood, submitEdamameField, setNutrientFields, addDailyFoods, deleteFood } from "../actions"
+import { selectEdamame, addAnotherFood, cancelFood, submitEdamameField, setNutrientFields, addDailyFoods, deleteFood } from "../actions"
 import { connect } from "react-redux";
 
 const mapStateToProps = state => ({
 	nutrientFields: state.nutrientFields,
+	edamame: state.edamame,
 	dailyFoods: state.dailyFoods,
 	displayTable: state.displayTable
 });
@@ -16,9 +17,11 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		e.preventDefault();
 		return dispatch(submitEdamameField(text));
 	},
+	selectEdamame: (food) => dispatch(selectEdamame(food)),
 	onSubmit: (food, formCorrect, e) => {
 		if (formCorrect) {
-			e.preventDefault();
+			e.stopPropagation();
+  			e.nativeEvent.stopImmediatePropagation();
 			return dispatch(addDailyFoods(food)); 
 		}
 	},
@@ -29,12 +32,18 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 
 class Nutrition extends Component {
 	render() {
-		const { cancelFood, submitEdamameField, addAnotherFood, displayTable, nutrientFields, dailyFoods, onFieldChange, onSubmit, deleteFood } = this.props;
+		const { cancelFood, selectEdamame, submitEdamameField, addAnotherFood, displayTable, nutrientFields, dailyFoods, onFieldChange, onSubmit, deleteFood } = this.props;
+		const { searchResults, isPending, isSearching, error } = this.props.edamame;
 		return (
 			<div className="nutrition">
 				{ !displayTable ? 
 				<NutritionInput nutrientFields={nutrientFields}
 								submitEdamameField={submitEdamameField}
+								selectEdamame={selectEdamame}
+								searchResults={searchResults}
+								isPending={isPending}
+								isSearching={isSearching}
+								error={error}
 								onFieldChange={onFieldChange}
 								cancelFood={cancelFood}
 								onSubmit={onSubmit} /> :
