@@ -10,7 +10,7 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 			  <h1 className="ml6 ml-shrink">Search over 700,000 foods in our database...</h1>
 			  <div className="z-1 flex flex-column justify-between">
 				  <div className="flex search-field flex-wrap">
-					  <div className="z-1 ml6 ml-shrink measure nutrient-container-l flex-column">
+					  <div className="z-1 mt2 ml6 ml-shrink measure nutrient-container-l flex-column">
 					    <input id="edamame" 
 					    	   className="food-input input-reset bg-transparent white ba b--white pa2 db w-100" 
 					    	   type="text" aria-describedby="food-desc"
@@ -43,7 +43,7 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 					   		)
 					   	}
 					  </div>
-					  <div className="flex flex-column search-container align-center">
+					  <div className="flex mt2 flex-column search-container align-center">
 					  	  <button className="search-btn w4 b ph3 pv2 ml3 tc ba br2 bg-transparent grow pointer outline-0 f6"
 								  onClick={submitEdamameField.bind(null, edamame)}>
 								  Search
@@ -68,7 +68,7 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 				    	   onChange={onFieldChange} />
 				  </div>
 				  <div className="z-1 measure ml6 ml-shrink nutrient-container">
-					  <div className="measure nutrient-container-md mr5">
+					  <div className="nutrient-container-md">
 					    <label htmlFor="calories" className="center f6 b db mb2">Calories 
 					    </label>
 					    <input id="calories" 
@@ -79,7 +79,7 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 					    	   required
 					    	   onChange={onFieldChange} />
 					  </div>
-					  <div className="measure nutrient-container-sm mr5">
+					  <div className="nutrient-container-sm">
 					    <label htmlFor="fat" className="center f6 b db mb2">Fat 
 					    </label>
 					    <input id="fat" 
@@ -90,7 +90,7 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 					    	   required
 					    	   onChange={onFieldChange} />
 					  </div>
-					  <div className="measure nutrient-container-sm mr5">
+					  <div className="nutrient-container-sm">
 					    <label htmlFor="carbs" className="center f6 b db mb2">Carbs 
 					    </label>
 					    <input id="carbs" 
@@ -101,7 +101,7 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 					    	   required
 					    	   onChange={onFieldChange} />
 					  </div>
-					  <div className="measure nutrient-container-sm mr5">
+					  <div className="nutrient-container-sm">
 					    <label htmlFor="protein" className="center f6 b db mb2">Protein 
 					    </label>
 					    <input id="protein" 

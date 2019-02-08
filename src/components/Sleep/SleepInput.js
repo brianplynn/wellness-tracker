@@ -32,7 +32,7 @@ const SleepInput = ({ currentDate, sleepAddForm, changeSleepAddForm, addSleepToG
 		  </div>
 		  <fieldset className="mt4 mb4 w-60 center bn">
 		    <legend className="center tc fw7 f4 mt5 mb3">Quality</legend>
-		    <div className="flex justify-around">
+		    <div className="flex quality justify-around">
 			    <label className="container" data-field="quality" value={sleepAddForm.quality}>
 			    	<div className="b mt1 ml1 f5">Good</div>
 				  <input onClick={changeSleepAddForm} value="Good" data-field="quality" type="radio" name="quality" />

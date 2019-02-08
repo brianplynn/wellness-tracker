@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import './App.css';
 import Navbar from "../components/Navbar.js";
 import Main from "../components/Main.js";
+import Login from "../components/Login.js";
 import { setActiveSection } from "../actions"
 
 const mapStateToProps = state => {
@@ -23,10 +24,13 @@ class App extends Component {
 		const { activeSection, setSection } = this.props;
 	    return (
 	      <div className="App">
-	      	<div className="z-2">
-	      	<Navbar setSection={setSection} />
-	      	<Main activeSection={activeSection}/>
-	      	</div>
+	      	{ activeSection === "login" ? 
+	      		<Login /> :
+	      		<div className="z-2">
+			      	<Navbar setSection={setSection} />
+			      	<Main activeSection={activeSection}/>
+		      	</div>
+      		}
 	      </div>
 	    );
 	}

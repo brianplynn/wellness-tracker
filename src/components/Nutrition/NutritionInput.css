@@ -16,7 +16,6 @@
 	}
 }
 
-
 @media (max-width: 1050px) {
 	.form-foods {
 		width: 80%;
@@ -28,6 +27,7 @@
 	margin-top: 2rem;
 	margin-bottom: 2rem;
 	flex-wrap: wrap;
+  justify-content: center;
 }
 
 .food-input {
@@ -44,12 +44,16 @@
 
 .nutrient-container-sm {
 	text-align: center;
-	width: 25%;
+  margin-right: 4%;
+	width: 20%;
+  min-width: 3em;
 }
 
 .nutrient-container-md {
 	text-align: center;
-	width: 25%;
+	width: 20%;
+  margin-right: 4%;
+  min-width: 4em;
 }
 
 .nutrient-container-l {
@@ -63,9 +67,10 @@
 	border-color: rgba(165,255,165,1);
 }
 
+
 @media (max-width: 1748px) {
 	.search-container {
-		margin-left: auto !important;
+		margin-left: auto;
 		margin-right: auto;
 	}
 
@@ -76,7 +81,9 @@
 		margin-left: auto !important;
 		margin-right: auto;
 	}
-
+  .search-field {
+    flex-direction: column;
+  }
 	h1 {
 		text-align: center;	
 	}

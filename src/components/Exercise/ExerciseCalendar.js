@@ -3,7 +3,7 @@ import "./ExerciseCalendar.css";
 
 const ExerciseCalendar = ({ changeDate, currentDate, workouts }) => {
 	const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-	return (<div className="w-80 center flex flex-wrap justify-center"> {
+	return (<div className="date-container center flex flex-wrap justify-center"> {
 		weekDays.map((day,i) => {
 			return i === currentDate.getDay() ?
 			(<article id="date" key={i} className="center tc w4 ba mv4">
