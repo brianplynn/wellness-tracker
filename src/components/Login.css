@@ -1,0 +1,17 @@
+.login {
+	border-color: rgba(240,190,210,1);
+	width: 50%;
+	z-index: 2;
+}
+
+@media (max-width: 1400px) {
+	.login {
+		width: 65%;
+	}
+}
+
+@media (max-width: 1050px) {
+	.login {
+		width: 80%;
+	}
+}

@@ -21,16 +21,11 @@ const mapDispatchToProps = (dispatch) => {
 
 class App extends Component {
 	render() {
-		const { activeSection, setSection } = this.props;
+		const { setSection } = this.props;
 	    return (
 	      <div className="App">
-	      	{ activeSection === "login" ? 
-	      		<Login /> :
-	      		<div className="z-2">
-			      	<Navbar setSection={setSection} />
-			      	<Main activeSection={activeSection}/>
-		      	</div>
-      		}
+			   <Navbar setSection={setSection} />
+			   <Main />
 	      </div>
 	    );
 	}

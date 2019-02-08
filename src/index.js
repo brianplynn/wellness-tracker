@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from "./reducers"
 import './index.css';
+import Login from "./components/Login";
 import App from './containers/App';
 import "tachyons";
 import Particles from 'react-particles-js';
@@ -29,12 +30,16 @@ const particlesOptions = {
 }
 
 ReactDOM.render(
-                <Router>
+                
           				<Provider store={store}>
           					<Particles className="particles" params={particlesOptions}/>
-          					<App />
+          					<Router>
+                      <Switch>
+                        <Route exact path="/" component={Login} />
+                        <Route path="/home" component={App} />
+                      </Switch>
+                    </Router>
           				</Provider>, document.getElementById('root')
-                </Router>
                 );
 
 // If you want your app to work offline and load faster, you can change
