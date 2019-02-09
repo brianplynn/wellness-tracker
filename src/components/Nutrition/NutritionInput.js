@@ -3,7 +3,7 @@ import "./NutritionInput.css";
 
 const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchResults, cancelFood, submitEdamameField, nutrientFields, onFieldChange, onSubmit }) => {
 	const { edamame, food, calories, fat, carbs, protein } = nutrientFields;
-	const formCorrect = food && calories && fat && carbs && protein;
+	const formCorrect = food && calories !== "" && fat !== "" && carbs !== "" && protein !== "";
 	return (
 		<div className="z-1 ba br2 form-foods center white shadow-3 pa4 ma3">
 		  <form>
@@ -56,7 +56,7 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 				  </div>
 				  </div>
 				</form>
-			  <div>
+			  <form>
 				  <h1 className="ml6 ml-shrink">...or enter your meal here:</h1>
 				  <div className="z-1 ml6 ml-shrink measure nutrient-container-l">
 				    <input id="food" 
@@ -118,11 +118,12 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 							  onClick={cancelFood}
 							  >Cancel</div> 
 					  <button className="w4 b ph3 pv2 ml1 tc light-blue ba br2 b--light-blue bg-transparent grow outline-0 pointer f6"
+					  		  type="submit"
 					  		  onClick={onSubmit.bind(null, nutrientFields, formCorrect)}>
 					  		  Submit
 					  </button>
 				  </div>
-			  </div>
+			  </form>
 		</div>
 
 		);

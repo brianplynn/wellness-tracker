@@ -19,9 +19,9 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	},
 	selectEdamame: (food) => dispatch(selectEdamame(food)),
 	onSubmit: (food, formCorrect, e) => {
+		console.log(formCorrect);
 		if (formCorrect) {
-			e.stopPropagation();
-  			e.nativeEvent.stopImmediatePropagation();
+			e.preventDefault();
 			return dispatch(addDailyFoods(food)); 
 		}
 	},
