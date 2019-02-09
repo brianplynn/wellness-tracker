@@ -56,7 +56,7 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 				  </div>
 				  </div>
 				</form>
-			  <form>
+			  <div>
 				  <h1 className="ml6 ml-shrink">...or enter your meal here:</h1>
 				  <div className="z-1 ml6 ml-shrink measure nutrient-container-l">
 				    <input id="food" 
@@ -122,7 +122,7 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 					  		  Submit
 					  </button>
 				  </div>
-			  </form>
+			  </div>
 		</div>
 
 		);
