@@ -28,3 +28,4 @@ export const CHANGE_SLEEP_ADD_FORM = "CHANGE_SLEEP_ADD_FORM";
 export const ADD_SLEEP_TO_GRAPH = "ADD_SLEEP_TO_GRAPH";
 export const EDIT_SLEEP = "EDIT_SLEEP";
 export const CANCEL_SLEEP = "CANCEL_SLEEP";
+export const LOG_IN_FB = "LOG_IN_FB";

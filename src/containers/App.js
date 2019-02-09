@@ -4,29 +4,34 @@ import './App.css';
 import Navbar from "../components/Navbar.js";
 import Main from "../components/Main.js";
 import Login from "../components/Login.js";
-import { setActiveSection } from "../actions"
+import { setActiveSection, logInFB } from "../actions"
 
 const mapStateToProps = state => {
 	return {
-		activeSection: state.activeSection
+		activeSection: state.activeSection,
+		isLoggedIn: state.isLoggedIn,
+		activeUser: state.activeUser
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		setSection: (e) => dispatch(setActiveSection(e.target.title))
+		setSection: (e) => dispatch(setActiveSection(e.target.title)),
+		logInFacebook: (response) => dispatch(logInFB(response))
 	}
 };
 
 
 class App extends Component {
 	render() {
-		const { setSection } = this.props;
+		const { logInFacebook, setSection, isLoggedIn, activeUser } = this.props;
 	    return (
+	      isLoggedIn ?
 	      <div className="App">
 			   <Navbar setSection={setSection} />
 			   <Main />
 	      </div>
+	      : <Login logInFacebook={logInFacebook} />
 	    );
 	}
 }

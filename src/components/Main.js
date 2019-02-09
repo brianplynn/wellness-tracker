@@ -8,9 +8,9 @@ const Main = () => {
 	return (
 		<React.Fragment>
 			<Switch>
-				<Route path="/home/nutrition" component={Nutrition} />
-				<Route path="/home/sleep" component={Sleep} />
-				<Route path="/home/exercise" component={Exercise} />
+				<Route path="/nutrition" component={Nutrition} />
+				<Route path="/sleep" component={Sleep} />
+				<Route path="/exercise" component={Exercise} />
 			</Switch>
 		</React.Fragment>
 		)

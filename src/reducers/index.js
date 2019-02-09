@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
+import isLoggedIn from "./isLoggedIn";
+import activeUser from "./activeUser"
 import activeSection from "./activeSection.js";
 import currentDate from "./currentDate.js"
 import nutrientFields from "./nutrientFields.js";
@@ -16,6 +18,8 @@ import sleepAddForm from "./sleepAddForm.js";
 
 
 export default combineReducers({
+	isLoggedIn,
+	activeUser,
 	activeSection,
 	currentDate,
 	nutrientFields,

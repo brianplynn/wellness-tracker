@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Route, Router } from 'react-router-dom';
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from "./reducers"
+import history from "./history";
 import './index.css';
 import Login from "./components/Login";
 import App from './containers/App';
@@ -33,10 +34,9 @@ ReactDOM.render(
                 
           				<Provider store={store}>
           					<Particles className="particles" params={particlesOptions}/>
-          					<Router>
+          					<Router history={history}>
                       <Switch>
-                        <Route exact path="/" component={Login} />
-                        <Route path="/home" component={App} />
+                        <Route path="/" component={App} />
                       </Switch>
                     </Router>
           				</Provider>, document.getElementById('root')
