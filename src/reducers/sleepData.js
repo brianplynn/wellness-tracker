@@ -1,5 +1,4 @@
 import { SET_ACTIVE_SECTION, SAVE_SLEEP_CHANGES, ADD_SLEEP_TO_GRAPH } from "../constants/action-types.js"
-import { arrayReplace } from "./workoutFields.js"
 
 const testingSleepState = {
 	coordinates: [

@@ -8,7 +8,6 @@ import thunkMiddleware from 'redux-thunk';
 import rootReducer from "./reducers"
 import history from "./history";
 import './index.css';
-import Login from "./components/Login";
 import App from './containers/App';
 import "tachyons";
 import Particles from 'react-particles-js';

@@ -7,12 +7,10 @@ import { logInFB } from "../actions";
 
 
 class Login extends Component {
-	constructor(props) {
-		super(props);
-	}
-
+	
 	responseFacebook = (response) => {
 	  const { logInFacebook } = this.props;
+	  console.log(response);
 	  if (response.name) {
 	  	logInFacebook(response);
 	  	history.push('/nutrition');
@@ -22,17 +20,9 @@ class Login extends Component {
 	}
 	render() {
 		return (
-			<div className="login center mt5 ba ph3 pv3 pv4-ns ph4-m ph5-l">
+			<div className="login center flex flex-column justify-center ba ph3 pv3 pv4-ns ph4-m ph5-l">
 			  <h1 className="white tc">Welcome!</h1>
-				<Link to="/home/nutrition">
-				<FacebookLogin
-				    appId="513697765824552"
-				    autoLoad={true}
-				    fields="name,email"
-				    callback={this.responseFacebook}
-				    version={3.2} />
-				</Link>
-				<button className="w4 z-3">Log in</button>
+				
 			</div>
 		);	
 	}
