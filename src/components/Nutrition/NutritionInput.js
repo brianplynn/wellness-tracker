@@ -117,11 +117,10 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 					  <div className="w4 b ph3 pv2 mr1 tc light-silver ba br2 b--light-silver bg-transparent grow pointer outline-0 f6"							  
 							  onClick={cancelFood}
 							  >Cancel</div> 
-					  <button className="w4 b ph3 pv2 ml1 tc light-blue ba br2 b--light-blue bg-transparent grow outline-0 pointer f6"
-					  		  type="submit"
+					  <div className="w4 b ph3 pv2 ml1 tc light-blue ba br2 b--light-blue bg-transparent grow outline-0 pointer f6"
 					  		  onClick={onSubmit.bind(null, nutrientFields, formCorrect)}>
 					  		  Submit
-					  </button>
+					  </div>
 				  </div>
 			  </form>
 		</div>
