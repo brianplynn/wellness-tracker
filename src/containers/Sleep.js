@@ -6,6 +6,7 @@ import SleepGraph from "../components/Sleep/SleepGraph.js";
 import { cancelSleep, editSleep, saveSleepChanges, changeSleepField, addSleepToGraph, changeSleepAddForm } from  "../actions";
 
 const mapStateToProps = state => ({
+	activeUser: state.activeUser,
 	currentDate: state.currentDate,
 	sleepFields: state.sleepFields,
 	sleepAddForm: state.sleepAddForm,
@@ -16,33 +17,31 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	changeSleepField: (row, col, e) => dispatch(changeSleepField(row, col, e.target.value)),
-	saveSleepChanges: (data) => {
+	saveSleepChanges: (data, user) => {
 		fetch('http://localhost:3001/edit-sleep', {
 			method: "put",
 	        headers: {'Content-Type': 'application/json'},
 	        body: JSON.stringify({  
 	          data: data,
-	          date: new Date().getDay()
+	          user: user
 	        })
 		})
 		.then(res => res.json())
-		.then(res => console.log(res))
 		.catch(err => console.log(err))
 		return dispatch(saveSleepChanges(data));
 	},
 	changeSleepAddForm: (e) => dispatch(changeSleepAddForm(e.target.dataset.field, e.target.value)),
-	addSleepToGraph: (data, e) => {
+	addSleepToGraph: (data, user, e) => {
 		e.preventDefault();
 		fetch('http://localhost:3001/add-sleep', {
 			method: "post",
 	        headers: {'Content-Type': 'application/json'},
 	        body: JSON.stringify({  
 	          data: data,
-	          date: new Date().getDay()
+	          user: user
 	        })
 		})
 		.then(res => res.json())
-		.then(res => console.log(res))
 		.catch(err => console.log(err))
 		return dispatch(addSleepToGraph(data));
 	},
@@ -52,15 +51,17 @@ const mapDispatchToProps = dispatch => ({
 
 class Sleep extends Component {
 	render() {
-		const { currentDate, cancelSleep, editSleep, sleepAddForm, changeSleepAddForm, addSleepToGraph, addingSleep, editingSleepData, sleepData, sleepFields, changeSleepField, saveSleepChanges } = this.props;
+		const { activeUser, currentDate, cancelSleep, editSleep, sleepAddForm, changeSleepAddForm, addSleepToGraph, addingSleep, editingSleepData, sleepData, sleepFields, changeSleepField, saveSleepChanges } = this.props;
 		return (
 			<div> {
 				addingSleep ? <SleepInput currentDate={currentDate}
 										  changeSleepAddForm={changeSleepAddForm}
 										  sleepAddForm={sleepAddForm}
+										  activeUser={activeUser}
 										  addSleepToGraph={addSleepToGraph}/>
 				: ( editingSleepData ?
 				<SleepTable currentDate={currentDate}
+							activeUser={activeUser}
 							sleepFields={sleepFields}
 							sleepData={sleepData}
 							changeSleepField={changeSleepField}

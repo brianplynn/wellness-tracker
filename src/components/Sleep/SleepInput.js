@@ -1,7 +1,7 @@
 import React from 'react';
 import "./SleepInput.css";
 
-const SleepInput = ({ currentDate, sleepAddForm, changeSleepAddForm, addSleepToGraph }) => {
+const SleepInput = ({ activeUser, currentDate, sleepAddForm, changeSleepAddForm, addSleepToGraph }) => {
 	return (
 		<form className="form-sleep pa4 white center ba w-50 br2">
 		  <h1 className="tc">Good {currentDate.getHours() < 12 ? "Morning" : (currentDate.getHours() < 18 ? "Afternoon" : "Evening")}!
@@ -54,7 +54,7 @@ const SleepInput = ({ currentDate, sleepAddForm, changeSleepAddForm, addSleepToG
 		  </fieldset>
 		  <button type="submit" 
 		  		  className="db w4 b ph3 pv2 center tc light-blue ba br2 b--light-blue bg-transparent grow pointer f6"
-		  		  onClick={addSleepToGraph.bind(null, sleepAddForm)}
+		  		  onClick={addSleepToGraph.bind(null, sleepAddForm, activeUser.id)}
 		  		  >
 		  	Submit
 		  </button>

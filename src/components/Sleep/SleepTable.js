@@ -1,6 +1,6 @@
 import React from 'react';
 import "./SleepTable.css";
-const SleepTable = ({ sleepFields, cancelSleep, sleepData, currentDate, changeSleepField, saveSleepChanges }) => {
+const SleepTable = ({ activeUser, sleepFields, cancelSleep, sleepData, currentDate, changeSleepField, saveSleepChanges }) => {
 	return (
 		<div className="pa4 z-1">
 		  <div className="z-inherit">
@@ -58,7 +58,7 @@ const SleepTable = ({ sleepFields, cancelSleep, sleepData, currentDate, changeSl
 						  onClick={cancelSleep}
 						  >Cancel</button> 
 				  <button className="w4 b ph3 pv2 ml1 tc light-blue ba br2 b--light-blue bg-transparent grow outline-0 pointer f6"
-				  		  onClick={saveSleepChanges.bind(null, sleepFields)}>
+				  		  onClick={saveSleepChanges.bind(null, sleepFields, activeUser.id)}>
 				  		  Submit
 				  </button>
 			</div>

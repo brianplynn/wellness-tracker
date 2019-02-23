@@ -1,4 +1,4 @@
-import { DELETE_FOOD, ADD_DAILY_FOOD } from "../constants/action-types.js"
+import { NUTRITION_SUCCESS, DELETE_FOOD, ADD_DAILY_FOOD } from "../constants/action-types.js"
 
 const dailyFoods = (state=[], action={}) => {
 	switch (action.type) {
@@ -6,6 +6,8 @@ const dailyFoods = (state=[], action={}) => {
 			return state.concat(Object.assign(action.payload.food, { id: action.payload.id }));
 		case DELETE_FOOD:
 			return state.slice(0,action.payload).concat(state.slice(Number(action.payload)+1))
+		case NUTRITION_SUCCESS:
+			return action.payload;
 		default:
 			return state;
 	}

@@ -45,9 +45,6 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 				})
 			})
 			.then(res => res.json())
-			.then(row => {
-				console.log(row);
-			})
 			dispatch(deleteFood(e.target.value));
 	},
 	cancelFood: () => dispatch(cancelFood()),
