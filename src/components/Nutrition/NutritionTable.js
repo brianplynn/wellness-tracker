@@ -30,7 +30,8 @@ const NutritionTable = ({ dailyFoods, deleteFood, addAnotherFood }) => {
 				          <td className="pv3 tc pr3 bb b--white">{food.protein}</td>
 				       	  <td className="pv3 tc pr3">
 				       	  <button className="br-100 bw1 b pointer ba b--washed-red bg-transparent washed-red"
-			       	  			value={i} 
+			       	  			value={i}
+			       	  			data-id={food.id} 
 			       	  			onClick={deleteFood}>x</button></td>
 				        </tr>
 				        ;

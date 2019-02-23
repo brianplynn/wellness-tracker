@@ -1,4 +1,5 @@
 import { EDIT_WORKOUT, DELETE_WORKOUT, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD } from "../constants/action-types.js"
+import { arrayReplace } from "../functions.js";
 
 const emptyWorkout = {
  			text: "",
@@ -37,11 +38,6 @@ const initialWorkoutFieldsState = [
 	 		workoutList: []
 	 	}, 
  	];
-
-export const arrayReplace = (array, item, i) => {
-	i = Number(i);
-	return array.slice(0,i).concat(item).concat(array.slice(i+1, array.length));
-}
 
 export const workoutFields = (state=initialWorkoutFieldsState, action={}) => {
 	switch (action.type) {

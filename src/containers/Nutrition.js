@@ -5,6 +5,7 @@ import { selectEdamame, addAnotherFood, cancelFood, submitEdamameField, setNutri
 import { connect } from "react-redux";
 
 const mapStateToProps = state => ({
+	activeUser: state.activeUser,
 	nutrientFields: state.nutrientFields,
 	edamame: state.edamame,
 	dailyFoods: state.dailyFoods,
@@ -18,26 +19,50 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		return dispatch(submitEdamameField(text));
 	},
 	selectEdamame: (food) => dispatch(selectEdamame(food)),
-	onSubmit: (food, formCorrect, e) => {
-		console.log(formCorrect);
+	onSubmit: (food, id, formCorrect, e) => {
 		if (formCorrect) {
 			e.preventDefault();
-			return dispatch(addDailyFoods(food)); 
+			fetch('http://localhost:3001/nutrition-submit', {
+				method: 'post',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					food: food,
+					id: id
+				})
+			})
+			.then(res => res.json())
+			.then(id => {
+				return dispatch(addDailyFoods(food, id[0]));
+			})
 		}
 	},
-	deleteFood: (e) => dispatch(deleteFood(e.target.value)),
+	deleteFood: (e) => {
+		fetch('http://localhost:3001/nutrition-delete', {
+				method: 'delete',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					id: e.target.dataset.id
+				})
+			})
+			.then(res => res.json())
+			.then(row => {
+				console.log(row);
+			})
+			dispatch(deleteFood(e.target.value));
+	},
 	cancelFood: () => dispatch(cancelFood()),
 	addAnotherFood: () => dispatch(addAnotherFood())
 });
 
 class Nutrition extends Component {
 	render() {
-		const { cancelFood, selectEdamame, submitEdamameField, addAnotherFood, displayTable, nutrientFields, dailyFoods, onFieldChange, onSubmit, deleteFood } = this.props;
+		const { activeUser, cancelFood, selectEdamame, submitEdamameField, addAnotherFood, displayTable, nutrientFields, dailyFoods, onFieldChange, onSubmit, deleteFood } = this.props;
 		const { searchResults, isPending, isSearching, error } = this.props.edamame;
 		return (
 			<div className="nutrition">
 				{ !displayTable ? 
 				<NutritionInput nutrientFields={nutrientFields}
+								activeUser={activeUser}
 								submitEdamameField={submitEdamameField}
 								selectEdamame={selectEdamame}
 								searchResults={searchResults}

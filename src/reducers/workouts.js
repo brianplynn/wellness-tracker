@@ -1,5 +1,5 @@
-import { arrayReplace } from "./workoutFields.js"
-import { SAVE_WORKOUT_CHANGES } from "../constants/action-types.js"
+import { arrayReplace } from "../functions.js";
+import { SAVE_WORKOUT_CHANGES, WORKOUT_SUCCESS } from "../constants/action-types.js"
 
 const initialWorkoutState = [
 	{ 
@@ -35,17 +35,29 @@ const initialWorkoutState = [
 const workouts = (state=initialWorkoutState, action={}) => {
 	switch (action.type) {
 		case SAVE_WORKOUT_CHANGES:
-			action.payload.fields.workoutList = action.payload.fields.workoutList.filter(workout => workout.text || workout.weight || workout.sets || workout.reps);
-			if (!action.payload.fields.title) { 
-				if (!action.payload.fields.workoutList[0]) {
-					action.payload.fields.title = "Rest";
+			let { day, fields } = action.payload;
+			if (!fields.title) { 
+				if (!fields.workoutList[0]) {
+					fields.title = "Rest";
 				} else {
-					action.payload.fields.title = "Untitled Workout";
+					fields.title = "Untitled Workout";
 				}
-			} else if (action.payload.fields.title && !action.payload.fields.workoutList[0]) {
-					action.payload.fields.title = "Rest";
+			} else if (fields.title && !fields.workoutList[0]) {
+					fields.title = "Rest";
 			}
-			return arrayReplace(state, action.payload.fields, action.payload.day);
+			return arrayReplace(state, fields, day);
+		case WORKOUT_SUCCESS:
+			action.payload.map(workout => {
+				state[workout.weekday] = Object.assign(state[workout.weekday], { title: workout.workout_title })
+				state[workout.weekday].workoutList
+				.push({
+					text: workout.text,
+					weight: workout.weight,
+					reps: workout.reps,
+					sets: workout.sets
+				})
+			})
+			return state;
 		default:
 			return state;
 	}

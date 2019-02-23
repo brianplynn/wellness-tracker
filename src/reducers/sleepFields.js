@@ -1,5 +1,5 @@
 import { EDIT_SLEEP, CHANGE_SLEEP_FIELD } from "../constants/action-types.js"
-import { arrayReplace } from "./workoutFields.js"
+import { arrayReplace } from "../functions.js";
 
 const initialSleepFieldsState = [
 	{

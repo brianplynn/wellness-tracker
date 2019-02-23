@@ -16,10 +16,34 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	changeSleepField: (row, col, e) => dispatch(changeSleepField(row, col, e.target.value)),
-	saveSleepChanges: (data) => dispatch(saveSleepChanges(data)),
+	saveSleepChanges: (data) => {
+		fetch('http://localhost:3001/edit-sleep', {
+			method: "put",
+	        headers: {'Content-Type': 'application/json'},
+	        body: JSON.stringify({  
+	          data: data,
+	          date: new Date().getDay()
+	        })
+		})
+		.then(res => res.json())
+		.then(res => console.log(res))
+		.catch(err => console.log(err))
+		return dispatch(saveSleepChanges(data));
+	},
 	changeSleepAddForm: (e) => dispatch(changeSleepAddForm(e.target.dataset.field, e.target.value)),
 	addSleepToGraph: (data, e) => {
 		e.preventDefault();
+		fetch('http://localhost:3001/add-sleep', {
+			method: "post",
+	        headers: {'Content-Type': 'application/json'},
+	        body: JSON.stringify({  
+	          data: data,
+	          date: new Date().getDay()
+	        })
+		})
+		.then(res => res.json())
+		.then(res => console.log(res))
+		.catch(err => console.log(err))
 		return dispatch(addSleepToGraph(data));
 	},
 	editSleep: (data) => dispatch(editSleep(data)),

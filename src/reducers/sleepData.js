@@ -83,7 +83,7 @@ const initialSleepState = {
 }
 
 
-const sleepData = (state=testingSleepState, action={}) => {
+const sleepData = (state=initialSleepState, action={}) => {
 	switch (action.type) {
 		case SAVE_SLEEP_CHANGES:
 			return Object.assign({}, state, 

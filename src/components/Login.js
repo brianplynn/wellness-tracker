@@ -4,18 +4,45 @@ import history from "../history";
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import GitHubLogin from 'react-github-login';
 
-
 class Login extends Component {
-
 	responseFacebook = (response) => {
-	  const { logInFacebook } = this.props;
+	  const { logInFacebook, addDailyFoods, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
 	  console.log(response);
 	  if (response.name) {
-	  	logInFacebook(response);
-	  	history.push('/nutrition');
-	  }
-	  // fetch login
-	  // fetch register if fails
+		  fetch('http://localhost:3001/login-fb', {
+		        method: "post",
+		        headers: {'Content-Type': 'application/json'},
+		        body: JSON.stringify({  
+		          id: response.id
+		        })
+		  })
+		  .then(res => res.json())
+		  .then(res => {
+		  	if (res == "No such user. Please register") throw new Error(res);
+		  	logInFacebook({ id: res.id, name: response.name, email: response.email });
+		    syncWorkoutsFunc("fb_" + response.id);
+		    syncNutritionFunc("fb_" + response.id);
+		    syncSleepFunc("fb_" + response.id);
+		    history.push('/nutrition');
+		   })
+		  .catch(err => {
+		  	if (err.message === "No such user. Please register") {
+		  		fetch('http://localhost:3001/register-fb', {
+			        method: "post",
+			        headers: {'Content-Type': 'application/json'},
+			        body: JSON.stringify({  
+			          id: response.id
+			        })
+			    })
+			    .then(res => res.json())
+			    .then(res => {
+			    	logInFacebook({ id: res[0], name: response.name, email: response.email });
+		    		history.push('/nutrition');
+			    })
+			    .catch(err => console.log(err))
+		  	}
+		  })
+		  } 
 	}
 
 	onSuccess = response => {

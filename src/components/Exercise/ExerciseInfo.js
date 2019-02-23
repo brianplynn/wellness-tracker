@@ -1,7 +1,7 @@
 import React from 'react';
 import "./ExerciseInfo.css";
 
-const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, cancelWorkoutEdit, workouts, workoutFields, changeWorkoutField, changeWorkoutTitle, addWorkout, deleteWorkout, saveChanges }) => {
+const ExerciseInfo = ({ activeUser, currentDate, editingWorkout, editWorkout, cancelWorkoutEdit, workouts, workoutFields, changeWorkoutField, changeWorkoutTitle, addWorkout, deleteWorkout, saveChanges }) => {
 	const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 	const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 	const index = currentDate.getDay();
@@ -131,7 +131,7 @@ const ExerciseInfo = ({ currentDate, editingWorkout, editWorkout, cancelWorkoutE
 						<button className="w4 b mr1 ph3 tc light-silver ba br2 b--light-silver bg-transparent grow pointer outline-0 f4"
 								data-day={index} onClick={cancelWorkoutEdit}>Cancel</button> 
 					    <button className="w4 b ml2 ph3 pv2 tc light-blue ba br2 b--light-blue bg-transparent grow pointer outline-0 f5"
-								onClick={saveChanges.bind(null, index, workoutFields[index])}>Save</button>
+								onClick={saveChanges.bind(null, activeUser.id, index, workoutFields[index])}>Save</button>
 						</div>
 					: ""}
 			</div>

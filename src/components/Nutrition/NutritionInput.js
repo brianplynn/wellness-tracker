@@ -1,7 +1,7 @@
 import React from 'react';
 import "./NutritionInput.css";
 
-const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchResults, cancelFood, submitEdamameField, nutrientFields, onFieldChange, onSubmit }) => {
+const NutritionInput = ({ activeUser, selectEdamame, error, isSearching, isPending, searchResults, cancelFood, submitEdamameField, nutrientFields, onFieldChange, onSubmit }) => {
 	const { edamame, food, calories, fat, carbs, protein } = nutrientFields;
 	const formCorrect = food && calories !== "" && fat !== "" && carbs !== "" && protein !== "";
 	return (
@@ -119,7 +119,12 @@ const NutritionInput = ({ selectEdamame, error, isSearching, isPending, searchRe
 							  >Cancel</div> 
 					  <button className="w4 b ph3 pv2 ml1 tc light-blue ba br2 b--light-blue bg-transparent grow outline-0 pointer f6"
 					  		  type="submit"
-					  		  onClick={onSubmit.bind(null, nutrientFields, formCorrect)}>
+					  		  onClick={onSubmit.bind(null, { food: food, 
+					  		  								 calories: calories, 
+					  		  								 fat: fat, 
+					  		  								 carbs: carbs, 
+					  		  								 protein: protein }, 
+					  		  						activeUser.id, formCorrect)}>
 					  		  Submit
 					  </button>
 				  </div>

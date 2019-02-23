@@ -1,4 +1,4 @@
-import { SET_ACTIVE_SECTION } from "../constants/action-types.js"
+import { LOG_IN_FB } from "../constants/action-types.js"
 
 const initialState = {
 	id: '',
@@ -8,6 +8,8 @@ const initialState = {
 
 const activeUser = (state=initialState, action={}) => {
 	switch (action.type) {
+		case LOG_IN_FB:
+			return action.payload;
 		default:
 			return state;
 	}

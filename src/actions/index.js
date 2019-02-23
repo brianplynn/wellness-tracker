@@ -1,4 +1,4 @@
-import { LOG_IN_FB, SELECT_EDAMAME, CANCEL_FOOD, SET_EDAMAME_FIELD, EDAMAME_PENDING, EDAMAME_SUCCESS, EDAMAME_FAILURE, CANCEL_SLEEP, EDIT_SLEEP, CHANGE_SLEEP_ADD_FORM, ADD_SLEEP_TO_GRAPH, CANCEL_WORKOUT_EDIT, SAVE_SLEEP_CHANGES, CHANGE_SLEEP_FIELD, DELETE_WORKOUT, SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
+import { NUTRITION_SUCCESS, NUTRITION_FAILURE, NUTRITION_PENDING, SLEEP_SUCCESS, SLEEP_FAILURE, SLEEP_PENDING, WORKOUT_SUCCESS, WORKOUT_FAILURE, WORKOUT_PENDING, LOG_IN_FB, SELECT_EDAMAME, CANCEL_FOOD, SET_EDAMAME_FIELD, EDAMAME_PENDING, EDAMAME_SUCCESS, EDAMAME_FAILURE, CANCEL_SLEEP, EDIT_SLEEP, CHANGE_SLEEP_ADD_FORM, ADD_SLEEP_TO_GRAPH, CANCEL_WORKOUT_EDIT, SAVE_SLEEP_CHANGES, CHANGE_SLEEP_FIELD, DELETE_WORKOUT, SAVE_WORKOUT_CHANGES, ADD_WORKOUT, CHANGE_WORKOUT_TITLE, CHANGE_WORKOUT_FIELD, EDIT_WORKOUT, CHANGE_DATE, ADD_ANOTHER_FOOD, DELETE_FOOD, ADD_DAILY_FOOD, SET_ACTIVE_SECTION, SET_FOOD_FIELD, SET_CALORIES_FIELD, SET_FAT_FIELD, SET_CARBS_FIELD, SET_PROTEIN_FIELD } from "../constants/action-types.js"
 
 export const setActiveSection = (section) => ({
 	type: SET_ACTIVE_SECTION,
@@ -40,9 +40,12 @@ export const setNutrientFields = (id, text) => {
 	}
 };
 
-export const addDailyFoods = (food) => ({
+export const addDailyFoods = (food, id) => ({
 	type: ADD_DAILY_FOOD,
-	payload: food
+	payload: {
+		food,
+		id
+	}
 });
 
 export const deleteFood = (num) => ({
@@ -151,6 +154,16 @@ export const cancelFood = () => ({
 	type: CANCEL_FOOD
 });
 
+export const selectEdamame = (food) => ({
+	type: SELECT_EDAMAME,
+	payload: food
+})
+
+export const logInFB = (response) => ({
+	type: LOG_IN_FB,
+	payload: response,
+})
+
 export const submitEdamameField = (text) => (dispatch) => {
 	dispatch({ type: EDAMAME_PENDING, payload: text});
 	fetch(`https://api.edamam.com/api/food-database/parser?nutrition-type=logging&ingr=${text}&app_id=512ac9bf&app_key=cb25735e5b566f1cb8a9cb5cd2f5f95b`)
@@ -164,12 +177,47 @@ export const submitEdamameField = (text) => (dispatch) => {
 		})
 }
 
-export const selectEdamame = (food) => ({
-	type: SELECT_EDAMAME,
-	payload: food
-})
+export const syncWorkouts = (id) => (dispatch) => {
+	dispatch({ type: WORKOUT_PENDING });
+	fetch(`http://localhost:3001/exercise/${id}`, {
+        method: "get",
+        headers: {'Content-Type': 'application/json'}
+    	})
+		.then(res => res.json())
+		.then(workouts => {
+			dispatch({ type: WORKOUT_SUCCESS, payload: workouts});
+		})
+		.catch(err => {
+			dispatch({ type: WORKOUT_FAILURE, payload: err});
+		})
+}
 
-export const logInFB = (response) => ({
-	type: LOG_IN_FB,
-	payload: response
-})
+export const syncSleep = (id) => (dispatch) => {
+	dispatch({ type: SLEEP_PENDING });
+	fetch(`http://localhost:3001/sleep/${id}`, {
+        method: "get",
+        headers: {'Content-Type': 'application/json'}
+    	})
+		.then(res => res.json())
+		.then(sleepData => {
+			dispatch({ type: SLEEP_SUCCESS, payload: sleepData});
+		})
+		.catch(err => {
+			dispatch({ type: SLEEP_FAILURE, payload: err});
+		})
+}
+
+export const syncNutrition = (id) => (dispatch) => {
+	dispatch({ type: NUTRITION_PENDING });
+	fetch(`http://localhost:3001/nutrition/${id}`, {
+        method: "get",
+        headers: {'Content-Type': 'application/json'}
+    	})
+		.then(res => res.json())
+		.then(dailyFoods => {
+			dispatch({ type: NUTRITION_SUCCESS, payload: dailyFoods});
+		})
+		.catch(err => {
+			dispatch({ type: NUTRITION_FAILURE, payload: err});
+		})
+}

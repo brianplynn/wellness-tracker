@@ -5,6 +5,7 @@ import ExerciseInfo from "../components/Exercise/ExerciseInfo.js";
 import { cancelWorkoutEdit, addWorkout, deleteWorkout, saveWorkoutChanges, changeDate, editWorkout, changeWorkoutField, changeWorkoutTitle } from "../actions";
 
 const mapStateToProps = state => ({
+	activeUser: state.activeUser,
 	currentDate: state.currentDate,
 	workouts: state.workouts,
 	editingWorkout: state.editingWorkout,
@@ -19,12 +20,27 @@ const mapDispatchToProps = dispatch => ({
 	changeWorkoutTitle: (e) => dispatch(changeWorkoutTitle(e.target.dataset.day, e.target.value)),
 	addWorkout: (e) => dispatch(addWorkout(e.target.dataset.day)),
 	deleteWorkout: (e) => dispatch(deleteWorkout(e.target.dataset.day, e.target.dataset.row)),
-	saveChanges: (day, fields) => dispatch(saveWorkoutChanges(day, fields))
+	saveChanges: (user, day, fields) => {
+		fields.workoutList = fields.workoutList.filter(workout => workout.text || workout.weight || workout.sets || workout.reps);
+		fetch('http://localhost:3001/exercise-submit', {
+			method: "post",
+	        headers: {'Content-Type': 'application/json'},
+	        body: JSON.stringify({
+	          user: user,  
+	          day: day,
+	          fields: fields
+	        })
+		})
+		.then(res => res.json())
+		.then(res => console.log(res))
+		.catch(err => console.log(err))
+		return dispatch(saveWorkoutChanges(day, fields))
+	}
 });
 
 class Exercise extends Component {
 	render() {
-		const { currentDate, saveChanges, cancelWorkoutEdit, addWorkout, deleteWorkout, changeWorkoutField, changeWorkoutTitle, editingWorkout, editWorkout, workouts, workoutFields, changeDate } = this.props;
+		const { activeUser, currentDate, saveChanges, cancelWorkoutEdit, addWorkout, deleteWorkout, changeWorkoutField, changeWorkoutTitle, editingWorkout, editWorkout, workouts, workoutFields, changeDate } = this.props;
 		return (
 			<div>
 				<ExerciseCalendar currentDate={currentDate}
@@ -40,7 +56,8 @@ class Exercise extends Component {
 							  editingWorkout={editingWorkout}
 							  editWorkout={editWorkout}
 							  workouts={workouts}
-							  workoutFields={workoutFields} />
+							  workoutFields={workoutFields}
+							  activeUser={activeUser} />
 			</div>
 			);
 	}

@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from "../components/Navbar.js";
 import Main from "../components/Main.js";
 import Login from "../components/Login.js";
-import { setActiveSection, logInFB } from "../actions"
+import { syncNutrition, syncSleep, syncWorkouts, setActiveSection, logInFB, addDailyFoods } from "../actions"
 
 const mapStateToProps = state => {
 	return {
@@ -17,21 +17,29 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		setSection: (e) => dispatch(setActiveSection(e.target.title)),
-		logInFacebook: (response) => dispatch(logInFB(response))
+		logInFacebook: (response) => dispatch(logInFB(response)),
+		addDailyFoods: (foods) => dispatch(addDailyFoods(foods)),
+		syncWorkoutsFunc: (id) => dispatch(syncWorkouts(id)),
+		syncNutritionFunc: (id) => dispatch(syncNutrition(id)),
+		syncSleepFunc: (id) => dispatch(syncSleep(id))
 	}
 };
 
 
 class App extends Component {
 	render() {
-		const { logInFacebook, setSection, isLoggedIn, activeUser } = this.props;
+		const { syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc, logInFacebook, setSection, isLoggedIn, activeUser } = this.props;
 	    return (
 	      isLoggedIn ?
 	      <div className="App">
 			   <Navbar setSection={setSection} />
 			   <Main />
 	      </div>
-	      : <Login logInFacebook={logInFacebook} />
+	      : <Login logInFacebook={logInFacebook}
+	      		   addDailyFoods={addDailyFoods}
+	      		   syncWorkoutsFunc={syncWorkoutsFunc}
+	      		   syncSleepFunc={syncSleepFunc}
+	      		   syncNutritionFunc={syncNutritionFunc} />
 	    );
 	}
 }
