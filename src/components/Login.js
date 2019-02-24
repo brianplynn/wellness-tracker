@@ -48,6 +48,7 @@ class Login extends Component {
 	onSuccess = response => {
 		fetch('https://github.com/login/oauth/access_token', {
 	        method: "post",
+	        mode: 'no-cors',
 	        headers: {'Content-Type': 'application/json'},
 	        body: JSON.stringify({  
 	          client_id: 'c7bdc63f0a88829cb6f2',
