@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
 	deleteWorkout: (e) => dispatch(deleteWorkout(e.target.dataset.day, e.target.dataset.row)),
 	saveChanges: (user, day, fields) => {
 		fields.workoutList = fields.workoutList.filter(workout => workout.text || workout.weight || workout.sets || workout.reps);
-		fetch('http://localhost:3001/exercise-submit', {
+		fetch('https://wellness-tracker-api.herokuapp.com/exercise-submit', {
 			method: "post",
 	        headers: {'Content-Type': 'application/json'},
 	        body: JSON.stringify({

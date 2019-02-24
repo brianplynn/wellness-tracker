@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 	onSubmit: (food, id, formCorrect, e) => {
 		if (formCorrect) {
 			e.preventDefault();
-			fetch('http://localhost:3001/nutrition-submit', {
+			fetch('https://wellness-tracker-api.herokuapp.com/nutrition-submit', {
 				method: 'post',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		}
 	},
 	deleteFood: (e) => {
-		fetch('http://localhost:3001/nutrition-delete', {
+		fetch('https://wellness-tracker-api.herokuapp.com/nutrition-delete', {
 				method: 'delete',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({

@@ -56,6 +56,7 @@ const workouts = (state=initialWorkoutState, action={}) => {
 					reps: workout.reps,
 					sets: workout.sets
 				})
+				return workout;
 			})
 			return state;
 		default:

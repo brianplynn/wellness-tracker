@@ -179,7 +179,7 @@ export const submitEdamameField = (text) => (dispatch) => {
 
 export const syncWorkouts = (id) => (dispatch) => {
 	dispatch({ type: WORKOUT_PENDING });
-	fetch(`http://localhost:3001/exercise/${id}`, {
+	fetch(`https://wellness-tracker-api.herokuapp.com/exercise/${id}`, {
         method: "get",
         headers: {'Content-Type': 'application/json'}
     	})
@@ -194,7 +194,7 @@ export const syncWorkouts = (id) => (dispatch) => {
 
 export const syncSleep = (id) => (dispatch) => {
 	dispatch({ type: SLEEP_PENDING });
-	fetch(`http://localhost:3001/sleep/${id}`, {
+	fetch(`https://wellness-tracker-api.herokuapp.com/sleep/${id}`, {
         method: "get",
         headers: {'Content-Type': 'application/json'}
     	})
@@ -209,7 +209,7 @@ export const syncSleep = (id) => (dispatch) => {
 
 export const syncNutrition = (id) => (dispatch) => {
 	dispatch({ type: NUTRITION_PENDING });
-	fetch(`http://localhost:3001/nutrition/${id}`, {
+	fetch(`https://wellness-tracker-api.herokuapp.com/nutrition/${id}`, {
         method: "get",
         headers: {'Content-Type': 'application/json'}
     	})

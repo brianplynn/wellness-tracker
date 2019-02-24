@@ -8,7 +8,7 @@ const sleepFields = (state=[], action={}) => {
 		case EDIT_SLEEP:
 			return action.payload.map( item => ({ date: item.realDate,
 												  hours: Math.floor(Number(item.hours)), 
-												  minutes: (Number(item.hours) - Math.floor(Number(item.hours))) * 60, 
+												  minutes: Math.round((Number(item.hours) - Math.floor(Number(item.hours))) * 60), 
 												  quality: item.quality })).slice().reverse();
 		default:
 			return state;

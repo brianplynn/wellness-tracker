@@ -6,10 +6,10 @@ import GitHubLogin from 'react-github-login';
 
 class Login extends Component {
 	responseFacebook = (response) => {
-	  const { logInFacebook, addDailyFoods, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
+	  const { logInFacebook, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
 	  console.log(response);
 	  if (response.name) {
-		  fetch('http://localhost:3001/login-fb', {
+		  fetch('https://wellness-tracker-api.herokuapp.com/login-fb', {
 		        method: "post",
 		        headers: {'Content-Type': 'application/json'},
 		        body: JSON.stringify({  
@@ -18,7 +18,7 @@ class Login extends Component {
 		  })
 		  .then(res => res.json())
 		  .then(res => {
-		  	if (res == "No such user. Please register") throw new Error(res);
+		  	if (res === "No such user. Please register") throw new Error(res);
 		  	logInFacebook({ id: res.id, name: response.name, email: response.email });
 		    syncWorkoutsFunc("fb_" + response.id);
 		    syncNutritionFunc("fb_" + response.id);
@@ -27,7 +27,7 @@ class Login extends Component {
 		   })
 		  .catch(err => {
 		  	if (err.message === "No such user. Please register") {
-		  		fetch('http://localhost:3001/register-fb', {
+		  		fetch('https://wellness-tracker-api.herokuapp.com/register-fb', {
 			        method: "post",
 			        headers: {'Content-Type': 'application/json'},
 			        body: JSON.stringify({  

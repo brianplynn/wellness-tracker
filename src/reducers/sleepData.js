@@ -97,12 +97,13 @@ const sleepData = (state=initialSleepState, action={}) => {
 													}))
 			});
 		case ADD_SLEEP_TO_GRAPH:
-			return Object.assign({}, state, { coordinates: state.coordinates.concat({
-																				realDate: dateToString(0),
-																				date: 7,
-																				hours: Number(action.payload.hours)+Number(action.payload.minutes)/60,
-																				quality: action.payload.quality
-																			})});
+			return Object.assign({}, state, 
+								{ coordinates: state.coordinates.concat({
+									realDate: dateToString(0),
+									date: 7,
+									hours: Number(action.payload.hours)+Number(action.payload.minutes)/60,
+									quality: action.payload.quality
+								})});
 		
 		case SET_ACTIVE_SECTION: 
 			const dateArr = [];
@@ -120,7 +121,16 @@ const sleepData = (state=initialSleepState, action={}) => {
 					quality: item.quality
 				}
 			})
-			
+			for (let item of formattedPayload) {
+				if (item.realDate === dateToString(0)) {
+					state.coordinates.push({
+						realDate: dateToString(0),
+						date: 7,
+						hours: 0,
+						quality: "",
+					})
+				}
+			}
 			return Object.assign(state, 
 								{ coordinates: state.coordinates.map((coord) => {
 									return Object.assign(coord, formattedPayload.filter(item => coord.realDate === item.realDate)[0])

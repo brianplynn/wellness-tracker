@@ -18,7 +18,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 	changeSleepField: (row, col, e) => dispatch(changeSleepField(row, col, e.target.value)),
 	saveSleepChanges: (data, user) => {
-		fetch('http://localhost:3001/edit-sleep', {
+		fetch('https://wellness-tracker-api.herokuapp.com/edit-sleep', {
 			method: "put",
 	        headers: {'Content-Type': 'application/json'},
 	        body: JSON.stringify({  
@@ -33,7 +33,7 @@ const mapDispatchToProps = dispatch => ({
 	changeSleepAddForm: (e) => dispatch(changeSleepAddForm(e.target.dataset.field, e.target.value)),
 	addSleepToGraph: (data, user, e) => {
 		e.preventDefault();
-		fetch('http://localhost:3001/add-sleep', {
+		fetch('https://wellness-tracker-api.herokuapp.com/add-sleep', {
 			method: "post",
 	        headers: {'Content-Type': 'application/json'},
 	        body: JSON.stringify({  
