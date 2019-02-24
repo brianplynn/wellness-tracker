@@ -46,7 +46,7 @@ class Login extends Component {
 	}
 
 	onSuccess = response => {
-		fetch('https://github.com/login/oauth/access_token', {
+		fetch('https://wellness-tracker-api.herokuapp.com/login-gh', {
 	        method: "post",
 	        mode: "cors",
 	        headers: {'Content-Type': 'application/json'},
