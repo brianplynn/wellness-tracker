@@ -56,19 +56,8 @@ class Login extends Component {
 		.then(res => res.json())
 		.then(res => {
 			console.log(res);
-			if (res.message === "No such user. Please register") throw new Error(res);
-		  	logIn({ id: res.id });
-		    syncWorkoutsFunc(res.id);
-		    syncNutritionFunc(res.id);
-		    syncSleepFunc(res.id);
-		    history.push('/nutrition');
-		})
-		.catch(err => {
-			console.log(err);
-			console.log(err.message);
-			console.log(err.message.message);
-			if (err.message.message === "No such user. Please register") {
-		  		fetch('https://wellness-tracker-api.herokuapp.com/register-gh', {
+			if (res.message === "No such user. Please register") {
+				fetch('https://wellness-tracker-api.herokuapp.com/register-gh', {
 			        method: "post",
 			        headers: {'Content-Type': 'application/json'},
 			        body: JSON.stringify({  
@@ -81,7 +70,16 @@ class Login extends Component {
 		    		history.push('/nutrition');
 			    })
 			    .catch(err => console.log(err))
-		  	}
+			} else {
+			  	logIn({ id: res.id });
+			    syncWorkoutsFunc(res.id);
+			    syncNutritionFunc(res.id);
+			    syncSleepFunc(res.id);
+			    history.push('/nutrition');
+			}
+		})
+		.catch(err => {
+			console.log(err);
 		});
 	}
     onFailure = response => console.error(response);
