@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from "../components/Navbar.js";
 import Main from "../components/Main.js";
 import Login from "../components/Login.js";
-import { syncNutrition, syncSleep, syncWorkouts, setActiveSection, logInFB, addDailyFoods } from "../actions"
+import { syncNutrition, syncSleep, syncWorkouts, setActiveSection, logIn, addDailyFoods } from "../actions"
 
 const mapStateToProps = state => {
 	return {
@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		setSection: (e) => dispatch(setActiveSection(e.target.title)),
-		logInFacebook: (response) => dispatch(logInFB(response)),
+		logIn: (response) => dispatch(logIn(response)),
 		addDailyFoods: (foods) => dispatch(addDailyFoods(foods)),
 		syncWorkoutsFunc: (id) => dispatch(syncWorkouts(id)),
 		syncNutritionFunc: (id) => dispatch(syncNutrition(id)),

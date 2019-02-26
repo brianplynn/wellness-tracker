@@ -18,7 +18,7 @@ class Login extends Component {
 		  .then(res => res.json())
 		  .then(res => {
 		  	if (res === "No such user. Please register") throw new Error(res);
-		  	logInFacebook({ id: res.id, name: response.name, email: response.email });
+		  	logIn({ id: res.id });
 		    syncWorkoutsFunc("fb_" + response.id);
 		    syncNutritionFunc("fb_" + response.id);
 		    syncSleepFunc("fb_" + response.id);
@@ -35,7 +35,7 @@ class Login extends Component {
 			    })
 			    .then(res => res.json())
 			    .then(res => {
-			    	logInFacebook({ id: res[0], name: response.name, email: response.email });
+			    	logInFacebook({ id: res[0] });
 		    		history.push('/nutrition');
 			    })
 			    .catch(err => console.log(err))
@@ -53,8 +53,33 @@ class Login extends Component {
 	        })
 	      })
 		.then(res => res.json())
-		.then(res => console.log(res))
-		.catch(err => console.log(err.message));
+		.then(res => {
+			console.log(res);
+			if (res.message === "No such user. Please register") throw new Error(res);
+		  	logIn({ id: res.id });
+		    syncWorkoutsFunc(res.id);
+		    syncNutritionFunc(res.id);
+		    syncSleepFunc(res.id);
+		    history.push('/nutrition');
+		})
+		.catch(err => {
+			console.log(err.message.message);
+			if (err.message.message === "No such user. Please register") {
+		  		fetch('https://wellness-tracker-api.herokuapp.com/register-gh', {
+			        method: "post",
+			        headers: {'Content-Type': 'application/json'},
+			        body: JSON.stringify({  
+			          id: err.message.id
+			        })
+			    })
+			    .then(res => res.json())
+			    .then(res => {
+			    	logIn({ id: res[0] });
+		    		history.push('/nutrition');
+			    })
+			    .catch(err => console.log(err))
+		  	}
+		});
 	}
     onFailure = response => console.error(response);
 

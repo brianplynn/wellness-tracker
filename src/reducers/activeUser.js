@@ -1,14 +1,12 @@
-import { LOG_IN_FB } from "../constants/action-types.js"
+import { LOG_IN } from "../constants/action-types.js"
 
 const initialState = {
-	id: '',
-	name: '',
-	email: ''
+	id: ''
 }
 
 const activeUser = (state=initialState, action={}) => {
 	switch (action.type) {
-		case LOG_IN_FB:
+		case LOG_IN:
 			return action.payload;
 		default:
 			return state;

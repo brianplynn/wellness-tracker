@@ -1,8 +1,8 @@
-import { LOG_IN_FB } from "../constants/action-types.js"
+import { LOG_IN } from "../constants/action-types.js"
 
 const isLoggedIn = (state=false, action={}) => {
 	switch (action.type) {
-		case LOG_IN_FB:
+		case LOG_IN:
 			return true;
 		default:
 			return state;
