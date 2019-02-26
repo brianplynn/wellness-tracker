@@ -6,7 +6,7 @@ import GitHubLogin from 'react-github-login';
 
 class Login extends Component {
 	responseFacebook = (response) => {
-	  const { logInFacebook, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
+	  const { logIn, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
 	  if (response.name) {
 		  fetch('https://wellness-tracker-api.herokuapp.com/login-fb', {
 		        method: "post",
@@ -45,6 +45,7 @@ class Login extends Component {
 	}
 
 	onSuccess = response => {
+		const { logIn, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
 		fetch('https://wellness-tracker-api.herokuapp.com/login-gh', {
 	        method: "post",
 	        headers: {'Content-Type': 'application/json'},
