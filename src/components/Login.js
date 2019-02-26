@@ -64,6 +64,8 @@ class Login extends Component {
 		    history.push('/nutrition');
 		})
 		.catch(err => {
+			console.log(err);
+			console.log(err.message);
 			console.log(err.message.message);
 			if (err.message.message === "No such user. Please register") {
 		  		fetch('https://wellness-tracker-api.herokuapp.com/register-gh', {
