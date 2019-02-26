@@ -35,7 +35,7 @@ class Login extends Component {
 			    })
 			    .then(res => res.json())
 			    .then(res => {
-			    	logInFacebook({ id: res[0] });
+			    	logIn({ id: res[0] });
 		    		history.push('/nutrition');
 			    })
 			    .catch(err => console.log(err))
