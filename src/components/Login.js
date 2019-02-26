@@ -45,12 +45,11 @@ class Login extends Component {
 	}
 
 	onSuccess = response => {
-		console.log(response);
 		fetch('https://wellness-tracker-api.herokuapp.com/login-gh', {
 	        method: "post",
 	        headers: {'Content-Type': 'application/json'},
 	        body: JSON.stringify({  
-	        	code: response
+	        	code: response.code
 	        })
 	      })
 		.then(res => res.json())
