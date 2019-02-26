@@ -61,7 +61,7 @@ class Login extends Component {
 			        method: "post",
 			        headers: {'Content-Type': 'application/json'},
 			        body: JSON.stringify({  
-			          id: res.message.id
+			          id: res.id
 			        })
 			    })
 			    .then(res => res.json())
