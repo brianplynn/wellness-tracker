@@ -27,14 +27,14 @@ const mapDispatchToProps = (dispatch) => {
 
 class App extends Component {
 	render() {
-		const { syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc, logInFacebook, setSection, isLoggedIn } = this.props;
+		const { syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc, logIn, setSection, isLoggedIn } = this.props;
 	    return (
 	      isLoggedIn ?
 	      <div className="App">
 			   <Navbar setSection={setSection} />
 			   <Main />
 	      </div>
-	      : <Login logInFacebook={logInFacebook}
+	      : <Login logIn={logIn}
 	      		   addDailyFoods={addDailyFoods}
 	      		   syncWorkoutsFunc={syncWorkoutsFunc}
 	      		   syncSleepFunc={syncSleepFunc}
