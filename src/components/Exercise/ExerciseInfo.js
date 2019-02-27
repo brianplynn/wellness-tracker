@@ -72,7 +72,6 @@ const ExerciseInfo = ({ activeUser, currentDate, editingWorkout, editWorkout, ca
 				        			   data-row={i}
 				        			   data-col="sets"
 				        			   value={workout.sets}
-				        			   type="number"
 				        			   onChange={changeWorkoutField}
 				        			   placeholder="Sets" />
 						    </td>
@@ -82,7 +81,6 @@ const ExerciseInfo = ({ activeUser, currentDate, editingWorkout, editWorkout, ca
 				        			   data-row={i}
 				        			   data-col="reps"
 				        			   value={workout.reps}
-				        			   type="number"
 				        			   onChange={changeWorkoutField}
 				        			   placeholder="Reps" />
 						    </td>
@@ -128,7 +126,7 @@ const ExerciseInfo = ({ activeUser, currentDate, editingWorkout, editWorkout, ca
 			</div>
 			<div> {editingWorkout ?
 					<div className="flex justify-center">
-						<button className="w4 b mr1 ph3 tc light-silver ba br2 b--light-silver bg-transparent grow pointer outline-0 f4"
+						<button className="w4 b mr1 ph3 pv2 tc light-silver ba br2 b--light-silver bg-transparent grow pointer outline-0 f5"
 								data-day={index} onClick={cancelWorkoutEdit}>Cancel</button> 
 					    <button className="w4 b ml2 ph3 pv2 tc light-blue ba br2 b--light-blue bg-transparent grow pointer outline-0 f5"
 								onClick={saveChanges.bind(null, activeUser.id, index, workoutFields[index])}>Save</button>
