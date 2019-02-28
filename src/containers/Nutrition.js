@@ -3,6 +3,7 @@ import NutritionInput from "../components/Nutrition/NutritionInput.js"
 import NutritionTable from "../components/Nutrition/NutritionTable.js"
 import { selectEdamame, addAnotherFood, cancelFood, submitEdamameField, setNutrientFields, addDailyFoods, deleteFood } from "../actions"
 import { connect } from "react-redux";
+import { dateToString } from "../functions.js";
 
 const mapStateToProps = state => ({
 	activeUser: state.activeUser,
@@ -27,7 +28,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					food: food,
-					id: id
+					id: id,
+					date: dateToString(0)
 				})
 			})
 			.then(res => res.json())
@@ -37,6 +39,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 		}
 	},
 	deleteFood: (e) => {
+		console.log(e.target.dataset.id);
 		fetch('https://wellness-tracker-api.herokuapp.com/nutrition-delete', {
 				method: 'delete',
 				headers: { 'Content-Type': 'application/json' },
