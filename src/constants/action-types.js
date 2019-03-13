@@ -38,3 +38,4 @@ export const NUTRITION_PENDING = "NUTRITION_PENDING";
 export const SLEEP_SUCCESS = "SLEEP_SUCCESS";
 export const SLEEP_FAILURE = "SLEEP_FAILURE";
 export const SLEEP_PENDING = "SLEEP_PENDING";
+export const SET_ERROR = "SET_ERROR";

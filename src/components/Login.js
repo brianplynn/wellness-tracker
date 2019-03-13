@@ -6,7 +6,7 @@ import GitHubLogin from 'react-github-login';
 
 class Login extends Component {
 	responseFacebook = (response) => {
-	  const { logIn, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
+	  const { setErrorMessage, logIn, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
 	  if (response.name) {
 		  fetch('https://wellness-tracker-api.herokuapp.com/login-fb', {
 		        method: "post",
@@ -38,10 +38,17 @@ class Login extends Component {
 			    	logIn({ id: res[0] });
 		    		history.push('/nutrition');
 			    })
-			    .catch(err => console.log(err))
+			    .catch(err => {
+			    	console.log(err)
+			    	setErrorMessage("Unable to login.")
+			    })
+		  	} else {
+		  		setErrorMessage("Unable to login.")
 		  	}
 		  })
-		  } 
+		}  else {
+			setErrorMessage("Unable to login.")
+		}
 	}
 
 	onSuccess = response => {
@@ -97,6 +104,7 @@ class Login extends Component {
 						    		onClick={renderProps.onClick}>
 						    		Sign in with Facebook</button>
 						  )}
+				    onClick={this.props.setErrorMessage.bind(null, "Connecting...")}
 				    callback={this.responseFacebook}
 				    version={3.2} />
 				</div>
@@ -104,6 +112,7 @@ class Login extends Component {
 							clientId="c7bdc63f0a88829cb6f2"
 							buttonText="Sign in with Github"
 							redirectUri=""
+							onRequest={this.props.setErrorMessage.bind(null, "Connecting...")}
 						    onSuccess={this.onSuccess}
 						    onFailure={this.onFailure}/>
 			</div>

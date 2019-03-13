@@ -15,9 +15,11 @@ import { workoutFields } from "./workoutFields.js";
 import addingSleep from "./addingSleep.js";
 import editingSleepData from "./editingSleepData.js";
 import sleepAddForm from "./sleepAddForm.js";
+import messageText from "./messageText";
 
 
 export default combineReducers({
+	messageText,
 	isLoggedIn,
 	activeUser,
 	activeSection,

@@ -4,12 +4,14 @@ import './App.css';
 import Navbar from "../components/Navbar.js";
 import Main from "../components/Main.js";
 import Login from "../components/Login.js";
-import { syncNutrition, syncSleep, syncWorkouts, setActiveSection, logIn, addDailyFoods } from "../actions"
+import ErrorMessage from "../components/ErrorMessage.js";
+import { setError, syncNutrition, syncSleep, syncWorkouts, setActiveSection, logIn, addDailyFoods } from "../actions"
 
 const mapStateToProps = state => {
 	return {
 		activeSection: state.activeSection,
 		isLoggedIn: state.isLoggedIn,
+		messageText: state.messageText
 	}
 }
 
@@ -20,25 +22,29 @@ const mapDispatchToProps = (dispatch) => {
 		addDailyFoods: (foods) => dispatch(addDailyFoods(foods)),
 		syncWorkoutsFunc: (id) => dispatch(syncWorkouts(id)),
 		syncNutritionFunc: (id) => dispatch(syncNutrition(id)),
-		syncSleepFunc: (id) => dispatch(syncSleep(id))
+		syncSleepFunc: (id) => dispatch(syncSleep(id)),
+		setErrorMessage: (msg) => dispatch(setError(msg))
 	}
 };
 
 
 class App extends Component {
 	render() {
-		const { syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc, logIn, setSection, isLoggedIn } = this.props;
+		const { setErrorMessage, messageText, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc, logIn, setSection, isLoggedIn } = this.props;
 	    return (
 	      isLoggedIn ?
 	      <div className="App">
 			   <Navbar setSection={setSection} />
 			   <Main />
 	      </div>
-	      : <Login logIn={logIn}
+	      : <React.Fragment><Login logIn={logIn}
 	      		   addDailyFoods={addDailyFoods}
 	      		   syncWorkoutsFunc={syncWorkoutsFunc}
 	      		   syncSleepFunc={syncSleepFunc}
-	      		   syncNutritionFunc={syncNutritionFunc} />
+	      		   syncNutritionFunc={syncNutritionFunc}
+	      		   setErrorMessage={setErrorMessage} />
+	      		   { messageText !== "" ? <ErrorMessage messageText={messageText} /> : "" }
+	      	</React.Fragment>
 	    );
 	}
 }
