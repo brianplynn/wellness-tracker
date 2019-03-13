@@ -4,6 +4,14 @@
 	width: 12rem;
 }
 
+.title-card {
+	height: 75%;
+}
+
+#date h1 {
+	height: 25%;
+}
+
 .date-container {
 		width: 80%;
 	}

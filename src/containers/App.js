@@ -42,8 +42,8 @@ class App extends Component {
 	      		   syncWorkoutsFunc={syncWorkoutsFunc}
 	      		   syncSleepFunc={syncSleepFunc}
 	      		   syncNutritionFunc={syncNutritionFunc}
-	      		   setErrorMessage={setErrorMessage} />
-	      		   { messageText !== "" ? <ErrorMessage messageText={messageText} /> : "" }
+	      		   setErrorMessage={setErrorMessage}
+	      		   messageText={messageText} />
 	      	</React.Fragment>
 	    );
 	}

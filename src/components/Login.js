@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./Login.css";
 import history from "../history";
+import ErrorMessage from "./ErrorMessage.js";
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import GitHubLogin from 'react-github-login';
 
@@ -92,6 +93,7 @@ class Login extends Component {
     onFailure = response => console.error(response);
 
 	render() {
+		const { setErrorMessage, messageText } = this.props;
 		return (
 			<div className="login center flex flex-column justify-center ba ph3 pv3 pv4-ns ph4-m ph5-l">
 			  <h1 className="white tc">Welcome!</h1>
@@ -115,6 +117,7 @@ class Login extends Component {
 							onRequest={this.props.setErrorMessage.bind(null, "Connecting...")}
 						    onSuccess={this.onSuccess}
 						    onFailure={this.onFailure}/>
+				{ messageText !== "" ? <ErrorMessage messageText={messageText} /> : "" }
 			</div>
 		);	
 	}
