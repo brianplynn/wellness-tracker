@@ -8,6 +8,7 @@ import GitHubLogin from 'react-github-login';
 class Login extends Component {
 	responseFacebook = (response) => {
 	  const { setErrorMessage, logIn, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
+	  setErrorMessage("Connecting...")
 	  if (response.name) {
 		  fetch('https://wellness-tracker-api.herokuapp.com/login-fb', {
 		        method: "post",
@@ -47,13 +48,14 @@ class Login extends Component {
 		  		setErrorMessage("Unable to login.")
 		  	}
 		  })
-		}  else {
-			setErrorMessage("Unable to login.")
+		} else {
+		  	setErrorMessage("Unable to login.")
 		}
 	}
 
 	onSuccess = response => {
-		const { logIn, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
+		const { setErrorMessage, logIn, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
+		setErrorMessage("Connecting...")
 		fetch('https://wellness-tracker-api.herokuapp.com/login-gh', {
 	        method: "post",
 	        headers: {'Content-Type': 'application/json'},
@@ -93,7 +95,7 @@ class Login extends Component {
     onFailure = response => console.error(response);
 
 	render() {
-		const { setErrorMessage, messageText } = this.props;
+		const { messageText } = this.props;
 		return (
 			<div className="login center flex flex-column justify-center ba ph3 pv3 pv4-ns ph4-m ph5-l">
 			  <h1 className="white tc">Welcome!</h1>
@@ -106,7 +108,6 @@ class Login extends Component {
 						    		onClick={renderProps.onClick}>
 						    		Sign in with Facebook</button>
 						  )}
-				    onClick={this.props.setErrorMessage.bind(null, "Connecting...")}
 				    callback={this.responseFacebook}
 				    version={3.2} />
 				</div>
@@ -114,8 +115,7 @@ class Login extends Component {
 							clientId="c7bdc63f0a88829cb6f2"
 							buttonText="Sign in with Github"
 							redirectUri=""
-							onRequest={this.props.setErrorMessage.bind(null, "Connecting...")}
-						    onSuccess={this.onSuccess}
+							onSuccess={this.onSuccess}
 						    onFailure={this.onFailure}/>
 				{ messageText !== "" ? <ErrorMessage messageText={messageText} /> : "" }
 			</div>
