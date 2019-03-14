@@ -1,6 +1,7 @@
 {
   "name": "wellness-tracker",
   "version": "0.1.0",
+  "homepage": "https://wellness-tracker.surge.sh/",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.2.1",
