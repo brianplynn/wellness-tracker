@@ -8,7 +8,7 @@ import GitHubLogin from 'react-github-login';
 class Login extends Component {
 	responseFacebook = (response) => {
 	  const { setErrorMessage, logIn, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
-	  setErrorMessage("Connecting...")
+	  setErrorMessage("Connecting, this may take a minute...")
 	  if (response.name) {
 		  fetch('https://wellness-tracker-api.herokuapp.com/login-fb', {
 		        method: "post",
@@ -55,7 +55,7 @@ class Login extends Component {
 
 	onSuccess = response => {
 		const { setErrorMessage, logIn, syncNutritionFunc, syncSleepFunc, syncWorkoutsFunc } = this.props;
-		setErrorMessage("Connecting...")
+		setErrorMessage("Connecting, this may take a minute...")
 		fetch('https://wellness-tracker-api.herokuapp.com/login-gh', {
 	        method: "post",
 	        headers: {'Content-Type': 'application/json'},
@@ -65,7 +65,6 @@ class Login extends Component {
 	      })
 		.then(res => res.json())
 		.then(res => {
-			console.log(res);
 			if (res.message === "No such user. Please register") {
 				fetch('https://wellness-tracker-api.herokuapp.com/register-gh', {
 			        method: "post",

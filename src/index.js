@@ -15,7 +15,7 @@ import * as serviceWorker from './serviceWorker';
 
 const logger = createLogger();
 const store = 
-	createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+	createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
 const particlesOptions = {
   particles: {
